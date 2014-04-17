@@ -35,8 +35,7 @@ class PagesController extends \BaseController {
 		$validation = new PageValidator;
 
 		// Validate given info
-		if ($validation->passes())
-		{
+		if ($validation->passes()) {
 			$page = new Page;
 			// Get user input into new Page
 			$page->title   = Input::get('title');
