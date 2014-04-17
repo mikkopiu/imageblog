@@ -33,7 +33,9 @@
 						{{-- Editing options --}}
 						{{-- Delete needs to be inside form, as it is POST --}}
 						{{ Form::open(array('route' => array('admin.pages.destroy', $page->id), 'method' => 'delete', 'data-confirm' => 'Are you sure?')) }}
+
 							<button type="submit" href="{{ URL::route('admin.pages.destroy', $page->id) }}" class="btn btn-danger btn-mini">Delete</button>
+							
 						{{ Form::close() }}
 					</td>
 				</tr>
