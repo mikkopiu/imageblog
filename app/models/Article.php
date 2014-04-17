@@ -1,4 +1,4 @@
-<?php namescape App\Models;
+<?php namespace App\Models;
 
 class Article extends \Eloquent {
 
@@ -6,6 +6,7 @@ class Article extends \Eloquent {
 
 	public function author()
 	{
-		return $this->belongsTo('User');
+		return $this->belongsTo('App\Models\User', 'user_id');
 	}
+
 }
