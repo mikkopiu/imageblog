@@ -5,3 +5,8 @@ composer.lock
 .DS_Store
 Thumbs.db
 .env.local.php
+.env.php
+composer.phar
+composer.lock
+artisan*
+laravel-readme.md
