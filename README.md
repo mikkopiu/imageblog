@@ -1,7 +1,7 @@
 ImageBlog-CMS
 =============
 
-A custome CMS for simple ready-made imageblogs.
+A custom CMS for simple ready-made imageblogs.
 
 Backend uses Laravel framework 4.1 (PHP).
 

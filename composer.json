@@ -1,8 +1,13 @@
 {
-	"name": "laravel/laravel",
-	"description": "The Laravel Framework.",
-	"keywords": ["framework", "laravel"],
+	"name": "laravel/imageblog",
+	"description": "A custom CMS for simple ready-made imageblogs.",
+	"keywords": ["framework", "laravel","blog","cms"],
 	"license": "MIT",
+	"authors": [
+		{
+			"name": "Mikko Piuhola"
+		}
+	],
 	"require": {
 		"laravel/framework": "4.0.*",
 		"cartalyst/sentry": "2.0.*",
