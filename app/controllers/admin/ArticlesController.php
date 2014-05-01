@@ -5,7 +5,7 @@ use App\Services\Validators\ArticleValidator;
 use Image, Input, Notification, Redirect, Sentry, Str;
 
 // See PagesController for general comments
-class ArticlesController extends BaseController {
+class ArticlesController extends \BaseController {
 
 	public function index()
 	{
