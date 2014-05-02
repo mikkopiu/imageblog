@@ -38,4 +38,3 @@ App::missing(function($exception)
 {
 	return Response::view('site::404', array(), 404);
 });
-

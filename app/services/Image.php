@@ -4,11 +4,34 @@ use File, Log;
 
 class Image {
 
+	/**
+	 * Type of library to use, defaults to GD
+	 * @var string
+	 */
 	protected $library = 'imagick';
+
+	/**
+	 * Instance of Imagine package
+	 * @var Imagine\Gd\Imagine
+	 */
 	protected $imagine;
+
+	/**
+	 * Always force overwriting of files
+	 * @var boolean
+	 */
 	public $overwrite = false;
+
+	/**
+	 * Quality of compression
+	 * @var integer
+	 */
 	public  $quality = 85;
 
+	/**
+	 * Init image service
+	 * @return void
+	 */
 	public function  __construct($library = null)
 	{
 		if (!$this->imagine) {
@@ -32,15 +55,27 @@ class Image {
 		}
 	}
 
+	/**
+	 * Resize an image
+	 * @param string $url
+	 * @param integer $width
+	 * @param integer $height
+	 * @param boolean $crop
+	 * @return string
+	 */
 	public function resize($url, $width = 100, $height = null, $crop = false, $quality = null)
 	{
 		if ($url) {
+			// URL info
 			$info = pathinfo($url);
 
+			// Size
 			if (!$height) $height = $width;
 
+			// Quality
 			$quality = ($quality) ? $quality : $this->quality;
 
+			// Directories and file names
 			$fileName		= $info['basename'];
 			$sourceDirPath	= public_path() . $info['dirname'];
 			$sourceFilePath	= $sourceDirPath . '/' . $fileName;
@@ -50,13 +85,17 @@ class Image {
 			$targetUrl		= asset($info['dirname'] . '/' . $targetDirName . '/' . $fileName);
 		}
 
+		// Create directory if missing
 		try {
+			// Create dir if missing
 			if (!File::isDirectory($targetDirPath) and $targetDirPath) {
 				@File::makeDirectory($targetDirPath);
 			}
 
+			// Set the size
 			$size = new \Imagine\Image\Box($width, $height);
 
+			// Set the mode
 			$mode = $crop ? \Imagine\Image\ImageInterface::THUMBNAIL_OUTBOUND : \Imagine\Image\ImageInterface::THUMBNAIL_INSET;
 
 			if ($this->overwrite or !File::exists($targetFilePath) or (File::lastModified($targetFilePath) < File::lastModified($sourceFilePath))) {
@@ -71,11 +110,23 @@ class Image {
 		return $targetUrl;
 	}
 
+	/**
+	 * Helper for creating thumbs
+	 * @param  string  $url
+	 * @param  integer $width
+	 * @param  integer $height
+	 * @return string
+	 */
 	public function thumb($url, $width, $height = null)
 	{
 		return $this->resize($url, $width, $height, true);
 	}
 
+	/**
+	 * Upload an image to the public storage
+	 * @param  File $file
+	 * @return string
+	 */
 	public function upload($file, $dir = null)
 	{
 		if ($file) {
