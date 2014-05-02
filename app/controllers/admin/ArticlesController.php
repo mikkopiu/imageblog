@@ -31,6 +31,7 @@ class ArticlesController extends \BaseController {
 			$article->title = Input::get('title');
 			$article->slug = Str::slug(Input::get('title'));
 			$article->body = Input::get('body');
+			$article->category = Input::get('category');
 			$article->user_id = Sentry::getUser()->id;
 			$article->save();
 
@@ -42,7 +43,7 @@ class ArticlesController extends \BaseController {
 
 			Notification::success('The article was saved!');
 
-			return Redirect::route('admin.articles.edit', $article->id);
+			return Redirect::route('admin.articles.index');
 		}
 		
 		return Redirect::back()->withInput()->withErrors($validation->errors);
@@ -69,7 +70,12 @@ class ArticlesController extends \BaseController {
 			}
 
 			$article->save();
+
+			Notification::success('The article was saved.');
+			return Redirect::route('admin.articles.index');
 		}
+
+		return Redirect::back()->withInput()->withErrors($validation->errors);
 	}
 
 	public function destroy($id)

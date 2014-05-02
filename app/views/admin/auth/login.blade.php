@@ -15,20 +15,21 @@
 
 						{{-- Prepare a space for errors --}}
 						@if($errors->has('login'))
-							<div class="alert alert-error">{{ $errors->first('login', ':message') }}</div>
+							<div class="alert alert-danger">{{ $errors->first('login', ':message') }}</div>
 						@endif
 
 						<div class="form-group">
 							{{ Form::label('email', 'Email') }}
 							<div class="controls">
-								{{ Form::text('email', null, array('class'=>'form-control','placeholder'=>'user@email.com','autofocus','type'=>'email')) }}
+								{{-- Form::text('email', null, array('class'=>'form-control','placeholder'=>'user@email.com','autofocus','type'=>'email')) --}}
+								{{ Form::email('email', null, array('class'=>'form-control','placeholder'=>'user@email.com','autofocus','type'=>'email')); }}
 							</div>
 						</div>
 
 						<div class="form-group">
 							{{ Form::label('password', 'Password') }}
 							<div class="controls">
-								{{ Form::password('password', array('class'=>'form-control','placeholder'=>'Password')) }}
+								{{ Form::password('password', array('class'=>'form-control','placeholder'=>'&#9679;&#9679;&#9679;&#9679;&#9679;')) }}
 							</div>
 						</div>
 

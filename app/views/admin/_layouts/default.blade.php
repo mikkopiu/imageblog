@@ -14,14 +14,7 @@
 		@include('admin._partials.navbar')
 		{{-- Actual content here --}}
 		<div id="page-wrapper">
-			<div class="row">
-				<div class="col-lg-12">
-					<h1 class="page-header">Control panel</h1>
-					@yield('main')
-				</div>
-				<!-- /.col-lg-12 -->
-			</div>
-			<!-- /.row -->
+			@yield('main')
 		</div>
 		<!-- /#page-wrapper -->
 	</div>

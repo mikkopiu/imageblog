@@ -14,7 +14,8 @@
 /* Admin Authentication routes */
 Route::group(['prefix' => 'admin', 'before' => 'auth.admin'], function()
 {
-	Route::any('/', 'App\Controllers\Admin\PagesController@index');
+	Route::any('/', 'App\Controllers\Admin\DashboardController@index');
+	Route::get('dashboard',['as'=>'admin.dashboard', 'uses'=>'App\Controllers\Admin\DashboardController@index']);
 	Route::resource('articles', 'App\Controllers\Admin\ArticlesController');
 	Route::resource('pages', 'App\Controllers\Admin\PagesController');
 });

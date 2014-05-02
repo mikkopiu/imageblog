@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
 	<div class="navbar-header">
 		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
 			<span class="sr-only">Toggle navigation</span>
@@ -211,7 +211,7 @@
 				<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
 				</li>
 				<li class="divider"></li>
-				<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+				<li><a href="{{ URL::route('admin.logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
 				</li>
 			</ul>
 			<!-- /.dropdown-user -->
@@ -236,10 +236,10 @@
 				-->
 				</li>
 				<li><!-- Make route classes for active & fix links -->
-					<a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+					<a href="{{ URL::route('admin.dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
 				</li>
 				<li>
-					<a href="forms.html"><i class="fa fa-edit fa-fw"></i> Posts</a>
+					<a href="{{ URL::route('admin.articles.index') }}"><i class="fa fa-edit fa-fw"></i> Articles</a>
 				</li>
 				<li>
 					<a href="forms.html"><i class="fa fa-inbox fa-fw"></i> Categories</a>
@@ -248,7 +248,7 @@
 					<a href="tables.html"><i class="fa fa-comments-o fa-fw"></i> Comments</a>
 				</li>
 				<li>
-					<a href="tables.html"><i class="fa fa-files-o fa-fw"></i> Pages</a>
+					<a href="{{ URL::route('admin.pages.index') }}"><i class="fa fa-files-o fa-fw"></i> Pages</a>
 				</li>
 				<li>
 					<a href="forms.html"><i class="fa fa-eye fa-fw"></i> Appearance</a>
