@@ -47,7 +47,7 @@ class PagesController extends \BaseController {
 			// Create new notification
 			Notification::success('The page was saved.');
 
-			return Redirect::route('admin.pages.edit', $page->id);
+			return Redirect::route('admin.pages.index');
 		}
 
 		return Redirect::back()->withInput()->withErrors($validation->errors);
@@ -74,7 +74,7 @@ class PagesController extends \BaseController {
 
 			Notification::success('The page was saved.');
 
-			return Redirect::route('admin.pages.edit', $page->id);
+			return Redirect::route('admin.pages.index');
 		}
 		
 		return Redirect::back()->withInput()->withErrors($validation->errors);
