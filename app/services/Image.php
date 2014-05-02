@@ -37,17 +37,17 @@ class Image {
 		if (!$this->imagine) {
 			$this->library = $library ? $library : null;
 
-			if (!$this->libary and class_exists('Imagick')) {
-				$this->libary = 'imagick';
+			if (!$this->library and class_exists('Imagick')) {
+				$this->library = 'imagick';
 			} else {
-				$this->libary = 'gd';
+				$this->library = 'gd';
 			}
 
-			if ($this->libary == 'imagick') {
+			if ($this->library == 'imagick') {
 				$this->imagine = new \Imagine\Imagick\Imagine();
-			} elseif ($this->libary == 'gmagick') {
+			} elseif ($this->library == 'gmagick') {
 				$this->imagine = new \Imagine\Gmagick\Imagine();
-			} elseif ($this->libary == 'gd') {
+			} elseif ($this->library == 'gd') {
 				$this->imagine = new \Imagine\Gd\Imagine();
 			} else {
 				$this->imagine = new \Imagine\Gd\Imagine();
