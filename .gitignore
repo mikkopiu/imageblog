@@ -10,3 +10,4 @@ composer.phar
 composer.lock
 artisan*
 laravel-readme.md
+/public/uploads

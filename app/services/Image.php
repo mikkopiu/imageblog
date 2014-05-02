@@ -137,7 +137,7 @@ class Image {
 
 			// Get file info and try to move
 			$destination	= public_path() . '/uploads/' . $dir;
-			$filename		= $file->getClientOriginName();
+			$filename		= $file->getClientOriginalName();
 			$path			= '/uploads/' . $dir . '/' . $filename;
 			$uploaded		= $file->move($destination, $filename);
 
