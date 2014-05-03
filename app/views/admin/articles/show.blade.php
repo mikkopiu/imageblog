@@ -1,6 +1,7 @@
 @extends('admin._layouts.default')
 
 @section('main')
+
 	<h2>Display article</h2>
 
 	<hr>

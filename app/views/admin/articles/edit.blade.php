@@ -35,7 +35,7 @@
 				</div>
 				<div>
 					<span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span>{{ Form::file('image') }}</span>
-					<a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+					<a href="#" class="btn btn-danger fileupload-exists" data-dismiss="fileupload">Remove</a>
 				</div>
 			</div>
 		</div>

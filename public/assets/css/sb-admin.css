@@ -323,3 +323,7 @@ table.dataTable thead .sorting:after {
 #side-menu > li.active {
     background-color: #e7e7e7;
 }
+
+a {
+    cursor: pointer;
+}
