@@ -315,3 +315,11 @@ table.dataTable thead .sorting:after {
 .show-grid {
     margin: 15px 0;
 }
+
+/* Custom styles */
+
+/* ------------------------------- */
+
+#side-menu > li.active {
+    background-color: #e7e7e7;
+}

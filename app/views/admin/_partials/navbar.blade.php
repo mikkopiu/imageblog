@@ -235,27 +235,31 @@
 					</div>
 				-->
 				</li>
-				<li><!-- Make route classes for active & fix links -->
+				<li class="{{ Request::is('admin/dashboard') ? 'active' : null }}">
 					<a href="{{ URL::route('admin.dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
 				</li>
-				<li>
+				<li class="{{ Request::is('admin/articles*') ? 'active' : null }}">
 					<a href="{{ URL::route('admin.articles.index') }}"><i class="fa fa-edit fa-fw"></i> Articles</a>
 				</li>
+				<!--
 				<li>
 					<a href="forms.html"><i class="fa fa-inbox fa-fw"></i> Categories</a>
 				</li>
 				<li>
 					<a href="tables.html"><i class="fa fa-comments-o fa-fw"></i> Comments</a>
 				</li>
-				<li>
+				-->
+				<li class="{{ Request::is('admin/pages*') ? 'active' : null }}">
 					<a href="{{ URL::route('admin.pages.index') }}"><i class="fa fa-files-o fa-fw"></i> Pages</a>
 				</li>
+				<!--
 				<li>
 					<a href="forms.html"><i class="fa fa-eye fa-fw"></i> Appearance</a>
 				</li>
 				<li>
 					<a href="forms.html"><i class="fa fa-cog fa-fw"></i> Settings</a>
 				</li>
+				-->
 			</ul>
 			<!-- /#side-menu -->
 		</div>

@@ -34,7 +34,7 @@ class AuthController extends BaseController {
 			if ($user)
 			{
 				// If succesfull, redirect to admin-pages
-				return Redirect::route('admin.pages.index');
+				return Redirect::route('admin.dashboard');
 			}
 		} catch(\Exception $e)
 		{
