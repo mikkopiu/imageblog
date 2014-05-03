@@ -1,8 +1,8 @@
-@extends('admin._layouts.default')
+@extends('admin._layouts.auth')
 
 {{-- Layout for login --}}
 @section('main')
-	<div class="container">
+	<div class="container" style="margin-top: 5rem;">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-4">
 				<div class="login-panel panel panel-default">

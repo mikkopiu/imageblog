@@ -7,12 +7,9 @@
 	<title>Demo blog - Control panel</title>
 
 	@include('admin._partials.assets.corecss')
-	@include('admin._partials.assets.sb-admin_css')
 </head>
 <body>
 	<div id="wrapper">
-		{{-- Navigation sidebar --}}
-		@include('admin._partials.navbar')
 		{{-- Actual content here --}}
 		<div id="page-wrapper">
 			@yield('main')
