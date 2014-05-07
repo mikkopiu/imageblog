@@ -33,7 +33,7 @@
 @endforeach
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">Articles <a href="{{ URL::route('admin.articles.create') }}" class="btn btn-success"><i class="fa fa-plus-square-o fa-fw"></i> Add new article</a></h1>
+		<h1 class="page-header">Posts <a href="{{ URL::route('admin.articles.create') }}" class="btn btn-success"><i class="fa fa-plus-square-o fa-fw"></i> Add new post</a></h1>
 	</div>
 	<!-- /.col-lg-12 -->
 </div>
@@ -59,7 +59,6 @@
 						<td>{{ $article->id }}</td>
 						{{-- Creates URL to the specific article --}}
 						<td><a data-toggle="modal" data-target="#myModal{{$i}}">{{ $article->title }}</a></td>
-						<!--<td><a href="{{ URL::route('admin.articles.show', $article->id) }}">{{ $article->title }}</a></td>-->
 						<td>{{ $article->created_at }}</td>
 						<td>
 							<a href="{{ URL::route('admin.articles.edit', $article->id) }}" class="btn btn-success btn-mini pull-left">Edit</a>

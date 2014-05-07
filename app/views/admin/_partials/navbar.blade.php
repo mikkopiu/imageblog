@@ -242,7 +242,7 @@
 					<a href="{{ URL::route('admin.dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
 				</li>
 				<li class="{{ Request::is('admin/articles*') ? 'active' : null }}">
-					<a href="{{ URL::route('admin.articles.index') }}"><i class="fa fa-edit fa-fw"></i> Articles</a>
+					<a href="{{ URL::route('admin.articles.index') }}"><i class="fa fa-edit fa-fw"></i> Posts</a>
 				</li>
 				<!--
 				<li>

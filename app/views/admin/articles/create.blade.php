@@ -2,7 +2,7 @@
 
 @section('main')
 
-	<h2>Create new article</h2>
+	<h2>Create new post</h2>
 
 	@include('admin._partials.notifications')
 

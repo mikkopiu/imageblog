@@ -2,7 +2,7 @@
 
 @section('main')
 
-	<h2>Display article</h2>
+	<h2>Display post</h2>
 
 	<hr>
 

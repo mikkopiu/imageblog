@@ -3,7 +3,7 @@
 @section('main')
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">Edit article - {{ $article->title }}</h1>
+		<h1 class="page-header">Edit post - {{ $article->title }}</h1>
 	</div>
 	<!-- /.col-lg-12 -->
 </div>
@@ -65,7 +65,7 @@
 				Info Panel
 			</div>
 			<div class="panel-body">
-				<p>Select a suitable title for your article and select an image.
+				<p>Select a suitable title for your post and select an image.
 				<hr>After that you can choose a category and write a short description.</p>
 			</div>
 		</div>
