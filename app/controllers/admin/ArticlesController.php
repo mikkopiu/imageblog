@@ -41,7 +41,7 @@ class ArticlesController extends \BaseController {
 				$article->save();
 			}
 
-			Notification::success('The article was saved!');
+			Notification::success('The post was saved.');
 
 			return Redirect::route('admin.articles.index');
 		}
@@ -51,7 +51,11 @@ class ArticlesController extends \BaseController {
 
 	public function edit($id)
 	{
-		return \View::make('admin.articles.edit')->with('article', Article::find($id));
+		$comments = Article::find($id)->comments;
+
+		return \View::make('admin.articles.edit')
+			//->with('comments', $comments)
+			->with('article', Article::find($id));
 	}
 
 	public function update($id)
@@ -63,6 +67,7 @@ class ArticlesController extends \BaseController {
 			$article->title = Input::get('title');
 			$article->slug = Str::slug(Input::get('title'));
 			$article->body = Input::get('body');
+			$article->category = Input::get('category');
 			$article->user_id = Sentry::getUser()->id;
 
 			if (Input::hasFile('image')) {
@@ -71,7 +76,7 @@ class ArticlesController extends \BaseController {
 
 			$article->save();
 
-			Notification::success('The article was saved.');
+			Notification::success('The post was saved.');
 			return Redirect::route('admin.articles.index');
 		}
 
@@ -83,7 +88,7 @@ class ArticlesController extends \BaseController {
 		$article = Article::find($id);
 		$article->delete();
 
-		Notification::success('The article was deleted!');
+		Notification::success('The post was deleted.');
 
 		return Redirect::route('admin.articles.index');
 	}

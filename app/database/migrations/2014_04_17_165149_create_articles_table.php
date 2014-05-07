@@ -23,6 +23,7 @@ class CreateArticlesTable extends Migration {
 			$table->string('category')->nullable();
 			$table->integer('user_id');
 			$table->timestamps();
+			$table->softDeletes();
 		});
 	}
 
