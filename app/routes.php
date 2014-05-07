@@ -18,8 +18,9 @@ Route::group(['prefix' => 'admin', 'before' => 'auth.admin'], function()
 	Route::get('dashboard',['as'=>'admin.dashboard', 'uses'=>'App\Controllers\Admin\DashboardController@index']);
 	Route::resource('articles', 'App\Controllers\Admin\ArticlesController');
 	Route::resource('pages', 'App\Controllers\Admin\PagesController');
-	Route::resource('comments', 'App\Controllers\Admin\CommentsController');
 });
+
+Route::resource('comments', 'App\Controllers\CommentsController');
 
 Route::get('admin/logout', ['as' => 'admin.logout', 'uses' => 'App\Controllers\Admin\AuthController@getLogout']);
 Route::get('admin/login', ['as' => 'admin.login', 'uses' => 'App\Controllers\Admin\AuthController@getLogin']);

@@ -28,9 +28,9 @@
 						<td>{{ $comment->created_at }}</td>
 						<td>
 							{{-- Delete needs to be inside form, as it is POST --}}
-							{{ Form::open(array('route' => array('admin.comments.destroy', $comment->id), 'method' => 'delete', 'style'=>'display:inline;')) }}
+							{{ Form::open(array('route' => array('comments.destroy', $comment->id), 'method' => 'delete', 'style'=>'display:inline;')) }}
 
-								<button class="btn btn-danger btn-mini" type="submit" href="{{ URL::route('admin.comments.destroy', $comment->id) }}" onclick="if(!confirm('Are you sure you want to delete this comment?')){return false;};"><i class="fa fa-times-circle fa-fw"></i>Delete</button>
+								<button class="btn btn-danger btn-mini" type="submit" href="{{ URL::route('comments.destroy', $comment->id) }}" onclick="if(!confirm('Are you sure you want to delete this comment?')){return false;};"><i class="fa fa-times-circle fa-fw"></i>Delete</button>
 								
 							{{ Form::close() }}
 						</td>

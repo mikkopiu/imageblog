@@ -16,10 +16,13 @@ Route::get('blog', array('as' => 'article.list', function()
 Route::get('blog/{slug}', array('as' => 'article', function($slug)
 {
 	$article = Article::where('slug', $slug)->first();
+	$comments = $article->comments;
 
 	if ( ! $article) App::abort(404, 'Article not found');
 
-	return View::make('site::article')->with('entry', $article);
+	return View::make('site::article')
+		->with('entry', $article)
+		->with('comments', $comments);
 }));
 
 // Single page
@@ -38,3 +41,5 @@ App::missing(function($exception)
 {
 	return Response::view('site::404', array(), 404);
 });
+
+Route::resource('comments', 'App\Controllers\CommentsController');

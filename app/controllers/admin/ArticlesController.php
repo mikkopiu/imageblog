@@ -14,11 +14,17 @@ class ArticlesController extends \BaseController {
 
 	public function show($id)
 	{
-		$comments = Article::find($id)->comments;
+		if (Article::find($id)) {
+			$comments = Article::find($id)->comments;
 
-		return \View::make('admin.articles.show')
-			->with('article', Article::find($id))
-			->with('comments', $comments);
+			return \View::make('admin.articles.show')
+				->with('article', Article::find($id))
+				->with('comments', $comments);
+		} else {
+			Notification::warning('No such article found.');
+
+			return Redirect::route('admin.articles.index');
+		}
 	}
 
 	public function create()
