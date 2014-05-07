@@ -12,7 +12,7 @@
 </div>
 <!-- /.row -->
 <div class="row">
-	<div class="col-lg-8">
+	<div class="col-lg-12">
 		<!-- Greeting panel -->
 		<div class="panel panel-info">
 			<div class="panel-heading">
@@ -25,6 +25,12 @@
 			<!-- /.panel-body -->
 		</div>
 		<!-- /.panel -->
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+	<div class="col-lg-8">
 		<!-- Quick post panel -->
 		<div class="panel panel-default">
 			<div class="panel-heading">

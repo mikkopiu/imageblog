@@ -16,7 +16,7 @@
 	<div class="col-lg-12">
 		{{ Notification::showAll() }}
 	@if (count($articles) > 0)
-		<div class="form-group col-lg-4 col-md-offset-1" style="padding-left:0;">
+		<div class="form-group col-lg-5" style="padding-left:0;">
 			<label class="control-label">Filter by title</label>
 			<div class="input-group">
 				<span class="input-group-addon"><span id="searchIcon" class="glyphicon glyphicon-search"></span></span>
