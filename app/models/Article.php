@@ -15,7 +15,7 @@ class Article extends \Eloquent {
 
 	public function comments()
 	{
-		return $this->hasMany('\App\Models\Comment', 'article_id');
+		return $this->hasMany('\App\Models\Comment');
 	}
 
 }

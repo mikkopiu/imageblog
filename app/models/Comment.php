@@ -6,7 +6,7 @@ class Comment extends \Eloquent {
 
 	public function article()
     {
-        return $this->belongsTo('\App\Models\Article');
+        return $this->belongsTo('\App\Models\Article', 'article_id');
     }
 
 }

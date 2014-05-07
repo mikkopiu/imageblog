@@ -16,22 +16,37 @@
 	<div class="col-lg-12">
 		{{ Notification::showAll() }}
 	@if (count($articles) > 0)
-		<div class="form-group">
+		<div class="form-group col-lg-4 col-md-offset-1" style="padding-left:0;">
 			<label class="control-label">Filter by title</label>
 			<div class="input-group">
 				<span class="input-group-addon"><span id="searchIcon" class="glyphicon glyphicon-search"></span></span>
-				<input id="titleFilter" class="form-control" type="text" name="search_name" placeholder="e.g. {{ $articles[0]->title }}" />
+				<input id="titleFilter" class="form-control" type="text" name="search_title" placeholder="e.g. {{ $articles[0]->title }}" />
+			</div>
+		</div>
+		<div class="form-group col-lg-2" style="padding-left:0;">
+			<label class="control-label">Filter by category</label>
+			<div class="input-group">
+				<span class="input-group-addon"><span id="searchIcon" class="glyphicon glyphicon-search"></span></span>
+				<select id="categoryFilter" class="form-control" name="search_category">
+					<option value="" disabled selected>Select a category</option>
+					<option value="">No filter</option>
+					<option value="Cats">Cats</option>
+					<option value="Dogs">Dogs</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+				</select>
 			</div>
 		</div>
 
 		<table class="table table-striped" id="articleTable">
 			<thead>
 				<tr>
-					<th>#</th>
-					<th>Title</th>
+					<th class="col-md-1">#</th>
+					<th class="col-md-4">Title</th>
+					<th class="col-md-2">Category</th>
 					<th>Posted</th>
-					<th>Updated</th>
-					<th>Category</th>
+					<th>Updated</th>					
+					<th>Comments</th>
 					<th><i class="fa fa-cog fa-fw"></i></th>
 				</tr>
 			</thead>
@@ -42,9 +57,16 @@
 						<td>{{ $article->id }}</td>
 						{{-- Creates URL to the specific article --}}
 						<td><a data-toggle="modal" data-target="#myModal{{$i}}">{{ $article->title }}</a></td>
+						<td>{{ $article->category }}</td>
 						<td>{{ $article->created_at }}</td>
 						<td>{{ $article->updated_at }}</td>
-						<td>{{ $article->category }}</td>
+						<td>
+							@if (count($article->comments) > 0)
+								<a class="btn btn-info" href="{{ URL::route('admin.articles.show', $article->id) }}">({{ count($article->comments) }}) comments</a>
+							@else
+								<button type="button" class="btn btn-info" disabled="disabled">(0) comments</button>
+							@endif
+						</td>
 						<td>
 							<a class="btn btn-success" href="{{ URL::route('admin.articles.edit', $article->id) }}">Edit</a>
 							{{-- Delete needs to be inside form, as it is POST --}}
@@ -86,7 +108,7 @@
 				},
 				"bSort": true,			// Disable sorting
 				"aoColumnDefs": [
-					{ "bSortable": false, "aTargets": [ 5 ] } 
+					{ "bSortable": false, "aTargets": [ 6 ] } 
 				],
 				"iDisplayLength": 10,	//records per page
 				"sDom": "t<'row'<'col-md-12 pull-right'ip>>",
@@ -99,9 +121,9 @@
 				oTable.fnFilter( this.value, 1 );
 			});
 
-			$("#categoryFilter").keyup( function () {
+			$("#categoryFilter").change( function () {
 				/* Filter the name column (index = 1) */
-				oTable.fnFilter( this.value, 4 );
+				oTable.fnFilter( this.value, 2 );
 			});
 
 		} );

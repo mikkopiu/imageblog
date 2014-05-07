@@ -14,7 +14,7 @@
 		{{-- Navigation sidebar --}}
 		@include('admin._partials.navbar')
 		{{-- Actual content here --}}
-		<div id="page-wrapper">
+		<div id="page-wrapper" class="clearfix">
 			@yield('main')
 		</div>
 		<!-- /#page-wrapper -->

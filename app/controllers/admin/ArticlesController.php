@@ -14,7 +14,11 @@ class ArticlesController extends \BaseController {
 
 	public function show($id)
 	{
-		return \View::make('admin.articles.show')->with('article', Article::find($id));
+		$comments = Article::find($id)->comments;
+
+		return \View::make('admin.articles.show')
+			->with('article', Article::find($id))
+			->with('comments', $comments);
 	}
 
 	public function create()
