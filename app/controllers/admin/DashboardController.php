@@ -17,6 +17,6 @@ class DashboardController extends \BaseController {
 	{
 		return \View::make('admin.dashboard')
 			->with('pages', Page::all())
-			->with('articles', Article::all());
+			->with('articles', Article::all()->take(5));
 	}
 }

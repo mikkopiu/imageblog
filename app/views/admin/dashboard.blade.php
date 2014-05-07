@@ -12,7 +12,7 @@
 	<div class="col-lg-8">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<i class="fa fa-edit fa-fw"></i> Newest Articles
+				<i class="fa fa-edit fa-fw"></i> Newest Posts
 			</div>
 			<!-- /.panel-heading -->
 			<div class="panel-body">
@@ -21,30 +21,31 @@
 						<thead>
 							<tr>
 								<th>#</th>
-								<th>First Name</th>
-								<th>Last Name</th>
-								<th>Username</th>
+								<th>Title</th>
+								<th>When</th>
+								<th><i class="fa fa-cog fa-fw"></i></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>@mdo</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>Jacob</td>
-								<td>Thornton</td>
-								<td>@fat</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>Larry</td>
-								<td>the Bird</td>
-								<td>@twitter</td>
-							</tr>
+							{{-- Create table data for all pages --}}
+							@foreach ($articles as $i => $article)
+								<tr>
+									<td>{{ $article->id }}</td>
+									{{-- Creates URL to the specific article --}}
+									<td><a data-toggle="modal" data-target="#myModal{{$i}}">{{ $article->title }}</a></td>
+									<td>{{ $article->created_at }}</td>
+									<td>
+										<a href="{{ URL::route('admin.articles.edit', $article->id) }}" class="btn btn-success btn-mini pull-left">Edit</a>
+										{{-- Editing options --}}
+										{{-- Delete needs to be inside form, as it is POST --}}
+										{{ Form::open(array('route' => array('admin.articles.destroy', $article->id), 'method' => 'delete')) }}
+
+											<button type="submit" href="{{ URL::route('admin.articles.destroy', $article->id) }}" class="btn btn-danger btn-mini" onclick="if(!confirm('Are you sure you want to delete this item?')){return false;};">Delete</button>
+											
+										{{ Form::close() }}
+									</td>
+								</tr>
+							@endforeach
 						</tbody>
 					</table>
 				</div>
