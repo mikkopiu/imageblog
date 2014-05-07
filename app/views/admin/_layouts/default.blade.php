@@ -10,7 +10,7 @@
 	@include('admin._partials.assets.sb-admin_css')
 </head>
 <body>
-	<div id="wrapper">
+	<div id="wrapper" class="clearfix">
 		{{-- Navigation sidebar --}}
 		@include('admin._partials.navbar')
 		{{-- Actual content here --}}

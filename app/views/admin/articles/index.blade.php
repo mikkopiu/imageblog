@@ -31,7 +31,6 @@
 </div>
 <!-- /.modal -->
 @endforeach
-<!-- Data table -->
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">Articles <a href="{{ URL::route('admin.articles.create') }}" class="btn btn-success"><i class="fa fa-plus-square-o fa-fw"></i> Add new article</a></h1>
@@ -39,6 +38,7 @@
 	<!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
+<!-- Data table -->
 <div class="row">
 	<div class="col-lg-12">
 		{{ Notification::showAll() }}
