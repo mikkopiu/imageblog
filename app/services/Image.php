@@ -1,5 +1,7 @@
 <?php namespace App\Services;
 
+// Created by Boris Strahija
+
 use File, Log;
 
 class Image {
