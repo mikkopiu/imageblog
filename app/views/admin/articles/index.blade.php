@@ -28,8 +28,7 @@
 			<div class="input-group">
 				<span class="input-group-addon"><span id="searchIcon" class="glyphicon glyphicon-search"></span></span>
 				<select id="categoryFilter" class="form-control" name="search_category">
-					<option value="" disabled selected>Select a category</option>
-					<option value="">No filter</option>
+					<option value="" selected>Select a category</option>
 					<option value="Cats">Cats</option>
 					<option value="Dogs">Dogs</option>
 					<option value="4">4</option>
