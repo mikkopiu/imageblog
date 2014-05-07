@@ -3,7 +3,7 @@
 // Home page
 Route::get('/', array('as' => 'home', function()
 {
-	return View::make('site::index')->with('entry', Page::where('slug', 'welcome')->first());
+	return Redirect::to('blog');
 }));
 
 // Article list

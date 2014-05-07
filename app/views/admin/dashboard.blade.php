@@ -1,6 +1,9 @@
 @extends('admin._layouts.default')
 
 @section('main')
+
+@include('admin._partials.article-modal')
+
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">Dashboard</h1>
@@ -10,84 +13,29 @@
 <!-- /.row -->
 <div class="row">
 	<div class="col-lg-8">
-		<div class="panel panel-default">
+		<!-- Greeting panel -->
+		<div class="panel panel-info">
 			<div class="panel-heading">
-				<i class="fa fa-edit fa-fw"></i> Newest Posts
+				<h4>Welcome to the Dashboard!</h4>
 			</div>
 			<!-- /.panel-heading -->
 			<div class="panel-body">
-				<div class="table-responsive">
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th>#</th>
-								<th>Title</th>
-								<th>When</th>
-								<th><i class="fa fa-cog fa-fw"></i></th>
-							</tr>
-						</thead>
-						<tbody>
-							{{-- Create table data for all pages --}}
-							@foreach ($articles as $i => $article)
-								<tr>
-									<td>{{ $article->id }}</td>
-									{{-- Creates URL to the specific article --}}
-									<td><a data-toggle="modal" data-target="#myModal{{$i}}">{{ $article->title }}</a></td>
-									<td>{{ $article->created_at }}</td>
-									<td>
-										<a href="{{ URL::route('admin.articles.edit', $article->id) }}" class="btn btn-success btn-mini pull-left">Edit</a>
-										{{-- Editing options --}}
-										{{-- Delete needs to be inside form, as it is POST --}}
-										{{ Form::open(array('route' => array('admin.articles.destroy', $article->id), 'method' => 'delete')) }}
-
-											<button type="submit" href="{{ URL::route('admin.articles.destroy', $article->id) }}" class="btn btn-danger btn-mini" onclick="if(!confirm('Are you sure you want to delete this item?')){return false;};">Delete</button>
-											
-										{{ Form::close() }}
-									</td>
-								</tr>
-							@endforeach
-						</tbody>
-					</table>
-				</div>
-				<!-- /.table-responsive -->
+				<p>Make a quick post below or edit your existings posts and pages.</p>
 			</div>
 			<!-- /.panel-body -->
 		</div>
 		<!-- /.panel -->
+		<!-- Quick post panel -->
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<i class="fa fa-plus-square-o fa-fw"></i> Quick Post
+				<i class="fa fa-plus fa-fw"></i> Quick Post
 			</div>
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-lg-12">
 						@include('admin._partials.notifications')
 
-						{{ Form::open(array('route' => 'admin.articles.store')) }}
-							<div class="form-group">
-								{{ Form::label('title', 'Title') }}
-								{{ Form::text('title', null, array('class'=>'form-control','placeholder'=>'Enter title')) }}
-							</div>
-							<div class="form-group">
-								{{ Form::label('image', 'Image') }}
-								{{ Form::file('image') }}
-							</div>
-							<div class="form-group">
-								{{ Form::label('body', 'Description') }}
-								{{ Form::textarea('body', null, array('class'=>'form-control','rows'=>'3')) }}
-							</div>
-							<div class="form-group">
-								{{ Form::label('category', 'Category') }}
-								{{ Form::select('category', array(
-									'1' => 'Category 1',
-									'2' => 'Category 2',
-									'3' => 'Category 3',
-									'4' => 'Category 4',
-									'5' => 'Category 5',), null, array('class' => 'form-control')); }}
-							</div>
-							{{ Form::submit('Submit', ['class' => 'btn btn-success']) }}
-							{{ Form::reset('Reset', ['class' => 'btn btn-default']) }}
-						{{ Form::close() }}
+						@include('admin._partials.article-form')
 					</div>
 				</div>
 				<!-- /.row (nested) -->
@@ -97,12 +45,13 @@
 		<!-- /.panel -->
 	</div>
 	<!-- /.col-lg-8 -->
+	
 	<div class="col-lg-4">
+		<!-- Notifications panel 
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<i class="fa fa-bell fa-fw"></i> Notifications Panel
 			</div>
-			<!-- /.panel-heading -->
 			<div class="panel-body">
 				<div class="list-group">
 					<a href="#" class="list-group-item">
@@ -126,12 +75,59 @@
 						</span>
 					</a>
 				</div>
-				<!-- /.list-group -->
 				<a href="#" class="btn btn-default btn-block">View All Alerts</a>
+			</div>
+		</div>
+		 -->
+		<!-- Newest posts panel -->
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<i class="fa fa-edit fa-fw"></i> Newest Posts
+			</div>
+			<!-- /.panel-heading -->
+			<div class="panel-body">
+				<div class="table-responsive">
+				@if (count($articles) > 0)
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Title</th>
+								<th>Updated</th>
+								<th><i class="fa fa-cog fa-fw"></i></th>
+							</tr>
+						</thead>
+						<tbody>
+							{{-- Create table data for all posts --}}
+							@foreach ($articles as $i => $article)
+								<tr>
+									<td>{{ $article->id }}</td>
+									{{-- Creates URL to the specific post --}}
+									<td><a data-toggle="modal" data-target="#myModal{{$i}}">{{ $article->title }}</a></td>
+									<td>{{ $article->updated_at }}</td>
+									<td>
+										<a class="btn btn-success btn-xs" href="{{ URL::route('admin.articles.edit', $article->id) }}">Edit</a>
+									</td>
+								</tr>
+							@endforeach
+						</tbody>
+					</table>
+				@else
+					<div class="well">
+						<h5 class="text-center">
+							No posts yet, create one!
+							<hr>
+							<a href="{{ URL::route('admin.articles.create') }}" class="btn btn-success"><i class="fa fa-plus-square-o fa-fw"></i> Add new post</a>
+						</h5>							
+					</div>
+				@endif
+				</div>
+				<!-- /.table-responsive -->
 			</div>
 			<!-- /.panel-body -->
 		</div>
 		<!-- /.panel -->
+		<!-- Pages panel -->
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<i class="fa fa-files-o fa-fw"></i> Pages
@@ -139,36 +135,40 @@
 			<!-- /.panel-heading -->
 			<div class="panel-body">
 				<div class="table-responsive">
+				@if (count($pages) > 0)
 					<table class="table table-striped">
 						<thead>
 							<tr>
 								<th>#</th>
-								<th>First Name</th>
-								<th>Last Name</th>
-								<th>Username</th>
+								<th>Title</th>
+								<th>Updated</th>
+								<th><i class="fa fa-cog fa-fw"></i></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>@mdo</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>Jacob</td>
-								<td>Thornton</td>
-								<td>@fat</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>Larry</td>
-								<td>the Bird</td>
-								<td>@twitter</td>
-							</tr>
+							{{-- Create table data for all pages --}}
+							@foreach ($pages as $page)
+								<tr>
+									<td>{{ $page->id }}</td>
+									{{-- Creates URL to the specific page --}}
+									<td><a href="{{ URL::route('admin.pages.show', $page->id) }}">{{ $page->title }}</a></td>
+									<td>{{ $page->updated_at }}</td>
+									<td>
+										<a class="btn btn-success btn-xs" href="{{ URL::route('admin.pages.edit', $page->id) }}">Edit</a>
+									</td>
+								</tr>
+							@endforeach
 						</tbody>
 					</table>
+				@else
+					<div class="well">
+						<h5 class="text-center">
+							No pages yet, create one!
+							<hr>
+							<a href="{{ URL::route('admin.pages.create') }}" class="btn btn-success"><i class="fa fa-plus-square-o fa-fw"></i> Create a new page</a>
+						</h5>							
+					</div>
+				@endif
 				</div>
 				<!-- /.table-responsive -->
 			</div>

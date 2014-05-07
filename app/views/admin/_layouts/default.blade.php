@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-US">
 <!-- Default template -->
 <head>
 	<meta charset="utf-8">
@@ -21,5 +21,7 @@
 	</div>
 	<!-- /#wrapper -->
 	@include('admin._partials.assets.corejs')
+	{{-- Custom Scripts --}}
+	@yield('scripts')
 </body>
 </html>
