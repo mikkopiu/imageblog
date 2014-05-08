@@ -20,7 +20,7 @@ class CreateArticlesTable extends Migration {
 			$table->string('slug');
 			$table->text('body')->nullable();
 			$table->string('image')->nullable();
-			$table->string('category')->nullable();
+			$table->string('category_id');
 			$table->integer('user_id');
 			$table->timestamps();
 			$table->softDeletes();

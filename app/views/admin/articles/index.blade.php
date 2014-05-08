@@ -115,12 +115,12 @@
 			
 			$("#titleFilter").keyup( function () {
 				/* Filter the name column (index = 1) */
-				oTable.fnFilter( this.value, 1 );
+				oTable.fnFilter( this.value, 0 );
 			});
 
 			$("#categoryFilter").change( function () {
 				/* Filter the name column (index = 1) */
-				oTable.fnFilter( this.value, 2 );
+				oTable.fnFilter( this.value, 1 );
 			});
 
 		} );
