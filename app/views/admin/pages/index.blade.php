@@ -12,7 +12,7 @@
 	<div class="col-lg-12">
 		{{ Notification::showAll() }}
 	@if (count($pages) > 0)
-		<table class="table table-striped" id="pageTable">
+		<table class="table table-striped table-hover" id="pageTable">
 			<thead>
 				<tr>
 					<th>#</th>
@@ -68,7 +68,7 @@
 				"oLanguage": {
 					"sSearch": "Search all columns:"
 				},
-				"bSort": true,			// Disable sorting
+				"bSort": true,
 				"aoColumnDefs": [
 					{ "bSortable": false, "aTargets": [ 4 ] } 
 				],

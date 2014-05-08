@@ -15,7 +15,7 @@
 	<div class="col-lg-12">
 		{{ Notification::showAll() }}
 	@if (count($categories) > 0)
-		<table class="table table-striped" id="categoryTable">
+		<table class="table table-striped table-hover" id="categoryTable">
 			<thead>
 				<tr>
 					<th>Name</th>

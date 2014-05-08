@@ -17,7 +17,7 @@ class DashboardController extends \BaseController {
 	public function index()
 	{
 		$pages = Page::all();
-		$articles = Article::all()->take(5);
+		$articles = Article::orderBy('updated_at', 'desc')->take(5)->get();
 		$categories = Category::lists('category','id');
 		
 		return \View::make('admin.dashboard')

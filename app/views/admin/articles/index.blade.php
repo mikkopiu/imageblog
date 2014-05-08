@@ -36,7 +36,7 @@
 			</div>
 		</div>
 
-		<table class="table table-striped" id="articleTable">
+		<table class="table table-striped table-hover" id="articleTable">
 			<thead>
 				<tr>
 					<th class="col-md-4">Title</th>
@@ -103,10 +103,11 @@
 				"oLanguage": {
 					"sSearch": "Search all columns:"
 				},
-				"bSort": true,			// Disable sorting
+				"bSort": true,
 				"aoColumnDefs": [
-					{ "bSortable": false, "aTargets": [ 5 ] } 
+					{ "bSortable": false, "aTargets": [ 5 ] }
 				],
+				"aaSorting": [[3, "desc"], [0, "desc"]],
 				"iDisplayLength": 10,	//records per page
 				"sDom": "t<'row'<'col-md-12 pull-right'ip>>",
 				"sPaginationType": "bootstrap",

@@ -97,7 +97,6 @@
 					<table class="table table-striped">
 						<thead>
 							<tr>
-								<th>#</th>
 								<th>Title</th>
 								<th>Updated</th>
 								<th><i class="fa fa-cog fa-fw"></i></th>
@@ -107,8 +106,6 @@
 							{{-- Create table data for all posts --}}
 							@foreach ($articles as $i => $article)
 								<tr>
-									<td>{{ $article->id }}</td>
-									{{-- Creates URL to the specific post --}}
 									<td><a data-toggle="modal" data-target="#myModal{{$i}}">{{ $article->title }}</a></td>
 									<td>{{ $article->updated_at }}</td>
 									<td>
