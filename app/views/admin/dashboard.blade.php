@@ -7,24 +7,7 @@
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">Dashboard</h1>
-	</div>
-	<!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-<div class="row">
-	<div class="col-lg-12">
-		<!-- Greeting panel -->
-		<div class="panel panel-info">
-			<div class="panel-heading">
-				<h4>Welcome to the Dashboard!</h4>
-			</div>
-			<!-- /.panel-heading -->
-			<div class="panel-body">
-				<p>Make a quick post below or edit your existings posts and pages.</p>
-			</div>
-			<!-- /.panel-body -->
-		</div>
-		<!-- /.panel -->
+		@include('admin._partials.notifications')
 	</div>
 	<!-- /.col-lg-12 -->
 </div>
@@ -39,8 +22,6 @@
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-lg-12">
-						@include('admin._partials.notifications')
-
 						@include('admin._partials.article-form')
 					</div>
 				</div>
