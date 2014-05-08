@@ -8,37 +8,41 @@
 
 	<div class="row">
 
-		<div class="col-sm-8 blog-main">
-		@foreach ($entries as $entry)
-			<div class="blog-post">
-				<h2 class="blog-post-title">{{ $entry->title }}</h2>
+		<div class="col-sm-9 blog-main">
+		@foreach ($entries as $i => $entry)
+			<div class="blog-post col-sm-5 {{ (($i+1) % 2 === 0) ? 'col-sm-offset-2' : null }}">
+				<h2 class="blog-post-title">{{ Str::limit($entry->title, 10) }}</h2>
 				<p class="blog-post-meta small">
 					{{ date('l jS \of F Y h:i:s A', strtotime($entry->created_at)) }} by {{ $entry->author->first_name }} {{ $entry->author->last_name }}
 				</p>
 			@if ($entry->image)
-				<figure><a href="{{ route('article', $entry->slug) }}"><img src="{{ Image::thumb($entry->image, 300) }}"></a></figure>
+				<a href="{{ route('article', $entry->slug) }}"><img class="img-responsive img-rounded" src="{{ Image::thumb($entry->image, 300) }}"></a>
 			@endif
 				<p>{{ Str::limit($entry->body, 100) }}</p>
 				<p><a href="{{ route('article', $entry->slug) }}" class="more">Read more</a></p>
-			</div><!-- /.blog-post -->
+			</div>
+			<!-- /.blog-post -->
 		@endforeach
-			<!-- Pagination -->
-			{{ $entries->links() }}
+			<div class="col-sm-12">
+				<!-- Pagination -->
+				{{ $entries->links() }}
+			</div>
+		</div>
+		<!-- /.blog-main -->
 
-		</div><!-- /.blog-main -->
-
-		<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+		<div class="col-sm-3 blog-sidebar well">
 			<div class="sidebar-module">
 				<h4>Categories</h4>
 				<ol class="list-unstyled">
 				@foreach ($categories as $category)
-					<li><a href="{{ route('category.list', $category->id) }}">{{ $category->category }}</a></li>
+					<li><a href="{{ route('category.list', $category->id) }}">{{ $category->category }} ({{ count($category->articles) }} posts)</a></li>
 				@endforeach
 				</ol>
 			</div>
-		</div><!-- /.blog-sidebar -->
+		</div>
+		<!-- /.blog-sidebar -->
 
-	</div><!-- /.row -->
+	</div>
 @stop
 @section('scripts')
 
