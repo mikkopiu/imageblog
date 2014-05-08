@@ -19,7 +19,12 @@
 			@endif
 
 			<h3><a href="{{ route('article', $entry->slug) }}">{{ $entry->title }}</a></h3>
-			<p>Category: {{ $entry->category->category }}</p>
+			<p>Category:
+			@if ($entry->category)
+				{{ $entry->category->category }}
+			@else
+				(not set)
+			@endif</p>
 			<h5>Created at {{ $entry->created_at }} &bull; by {{ $entry->author->first_name }} {{ $entry->author->last_name }}</h5>
 			<p>{{ Str::limit($entry->body, 100) }}</p>
 			<p><a href="{{ route('article', $entry->slug) }}" class="more">Read more</a></p>

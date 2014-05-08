@@ -20,8 +20,8 @@
 				<tr>
 					<th>Name</th>
 					<th>Created</th>
-					<th>Posts</th>
-					<th><i class="fa fa-cog fa-fw"></i></th>
+					<th class="col-md-1">Posts</th>
+					<th class="col-md-2"><i class="fa fa-cog fa-fw"></i></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -33,16 +33,14 @@
 						<td>{{ count($category->articles) }}</td>
 						<td>
 							<a class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal{{$i}}">Edit</a>
-							<!-- Commented until delete logic decided
 
 							{{-- Delete needs to be inside form, as it is POST --}}
 							{{ Form::open(array('route' => array('admin.categories.destroy', $category->id), 'method' => 'delete', 'style'=>'display:inline;')) }}
 
-								<button class="btn btn-danger btn-sm" type="submit" href="{{ URL::route('admin.categories.destroy', $category->id) }}" onclick="if(!confirm('Are you sure you want to delete this category?')){return false;};"><i class="fa fa-times-circle fa-fw"></i>Delete</button>
+								<button class="btn btn-danger btn-sm" type="submit" data-container="body" data-toggle="popover" data-placement="top" data-content="By deleting a category, you only clear the category fields of the corresponding posts."><i class="fa fa-times-circle fa-fw"></i>Delete</button>
 								
 							{{ Form::close() }}
-
-							-->
+							
 						</td>
 					</tr>
 				@endforeach
@@ -81,6 +79,11 @@
 				"sPaginationType": "bootstrap",
 			});
 
+			$('[data-toggle="popover"]').popover({
+				trigger: 'hover',
+				html: 'true',
+				title : '<span class="text-info"><strong>Are you sure?</strong></span>'
+			});
 		} );
 	</script>
 	@stop

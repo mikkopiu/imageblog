@@ -54,7 +54,13 @@
 						{{-- Creates URL to the specific article --}}
 						<td><a data-toggle="modal" data-target="#myModal{{$i}}">{{ $article->title }}</a></td>
 						{{-- First category refers to method, second to property --}}
-						<td>{{ $article->category->category }}</td>
+						<td>
+						@if ($article->category)
+							{{ $article->category->category }}
+						@else
+							No category set
+						@endif
+						</td>
 						<td>{{ $article->created_at }}</td>
 						<td>{{ $article->updated_at }}</td>
 						<td>
