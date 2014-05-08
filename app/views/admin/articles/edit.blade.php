@@ -47,16 +47,13 @@
 			</div>
 			<div class="form-group">
 				{{ Form::label('body', 'Description') }}
-				{{ Form::textarea('body', null, array('class'=>'form-control','rows'=>'3')) }}
+				{{ Form::textarea('body', null, array('class'=>'form-control','rows'=>'4')) }}
 			</div>
 			<div class="form-group">
 				{{ Form::label('category', 'Category') }}
-				{{ Form::select('category', array(
-					'1' => 'Category 1',
-					'2' => 'Category 2',
-					'3' => 'Category 3',
-					'4' => 'Category 4',
-					'5' => 'Category 5',), $article->category, array('class' => 'form-control')); }}
+				{{ Form::select('category', $categories, $article->category, array('class' => 'form-control')); }}
+				<br>
+				<button type="button" class="btn btn-default">Add new category</button>
 			</div>
 			{{ Form::submit('Save', array('class' => 'btn btn-success')) }}
 			<a href="{{ URL::previous() }}" class="btn btn-danger"><i class="fa fa-times fa-fw"></i>Cancel</a>

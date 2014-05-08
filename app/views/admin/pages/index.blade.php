@@ -32,11 +32,11 @@
 						<td>{{ $page->created_at }}</td>
 						<td>{{ $page->updated_at }}</td>
 						<td>
-							<a class="btn btn-success" href="{{ URL::route('admin.pages.edit', $page->id) }}">Edit</a>
+							<a class="btn btn-success btn-sm" href="{{ URL::route('admin.pages.edit', $page->id) }}">Edit</a>
 							{{-- Delete needs to be inside form, as it is POST --}}
 							{{ Form::open(array('route' => array('admin.pages.destroy', $page->id), 'method' => 'delete', 'style'=>'display:inline;')) }}
 
-								<button class="btn btn-danger btn-mini" type="submit" href="{{ URL::route('admin.pages.destroy', $page->id) }}" onclick="if(!confirm('Are you sure you want to delete this item?')){return false;};"><i class="fa fa-times-circle fa-fw"></i>Delete</button>
+								<button class="btn btn-danger btn-sm" type="submit" href="{{ URL::route('admin.pages.destroy', $page->id) }}" onclick="if(!confirm('Are you sure you want to delete this item?')){return false;};"><i class="fa fa-times-circle fa-fw"></i>Delete</button>
 								
 							{{ Form::close() }}
 						</td>

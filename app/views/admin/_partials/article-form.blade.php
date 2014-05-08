@@ -25,12 +25,7 @@
 	</div>
 	<div class="form-group">
 		{{ Form::label('category', 'Category') }}
-		{{ Form::select('category', array(
-			'1' => 'Category 1',
-			'2' => 'Category 2',
-			'3' => 'Category 3',
-			'4' => 'Category 4',
-			'5' => 'Category 5',), null, array('class' => 'form-control')); }}
+		{{ Form::select('category', $categories, null, array('class' => 'form-control')); }}
 	</div>
 	{{ Form::submit('Submit', ['class' => 'btn btn-success']) }}
 	{{ Form::reset('Reset', ['class' => 'btn btn-default']) }}

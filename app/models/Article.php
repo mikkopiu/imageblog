@@ -15,7 +15,7 @@ class Article extends \Eloquent {
 
 	public function category()
 	{
-		return $this->belongsTo('App\Models\Category', 'category');
+		return $this->belongsTo('App\Models\Category', 'category_id');
 	}
 
 	public function comments()
