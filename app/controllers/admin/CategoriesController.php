@@ -18,6 +18,32 @@ class CategoriesController extends \BaseController {
 			->with('categories', Category::all());
 	}
 
+	// Renders view for making new categories
+	public function create()
+	{
+		return \View::make('admin.categories.create');
+	}
+
+	public function store()
+	{
+		// Prepare validator
+		$validation = new CategoryValidator;
+
+		// Validate given info
+		if ($validation->passes()) {
+			$category = new Category;
+			$category->category = Input::get('category');
+			$category->save();
+
+			// Create new notification
+			Notification::success('The category was succesfully created.');
+
+			return Redirect::route('admin.categories.index');
+		}
+
+		return Redirect::back()->withInput()->withErrors($validation->errors);
+	}
+
 	// Update specific category
 	public function update($id)
 	{

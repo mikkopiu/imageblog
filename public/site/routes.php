@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Category;
+
 // Home page
 Route::get('/', array('as' => 'home', function()
 {
@@ -9,7 +11,11 @@ Route::get('/', array('as' => 'home', function()
 // Article list
 Route::get('blog', array('as' => 'article.list', function()
 {
-	return View::make('site::articles')->with('entries', Article::orderBy('created_at', 'desc')->get());
+	$categories = Category::all();
+	$entries = Article::orderBy('created_at', 'desc')->get();
+	return View::make('site::articles')
+		->with('entries', $entries)
+		->with('categories', $categories);
 }));
 
 // Single article

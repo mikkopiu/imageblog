@@ -6,7 +6,7 @@
 
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">Categories <a href="{{ URL::route('admin.pages.create') }}" class="btn btn-success"><i class="fa fa-plus-square-o fa-fw"></i> Add new category</a></h1>
+		<h1 class="page-header">Categories <a href="{{ URL::route('admin.categories.create') }}" class="btn btn-success"><i class="fa fa-plus-square-o fa-fw"></i> Add new category</a></h1>
 	</div>
 	<!-- /.col-lg-12 -->
 </div>

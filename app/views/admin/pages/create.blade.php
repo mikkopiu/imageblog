@@ -3,7 +3,7 @@
 @section('main')
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">Create new page</h1>
+		<h1 class="page-header">Create new page <a href="{{ URL::route('admin.pages.index') }}" class="btn btn-default">Return</a></h1>
 	</div>
 	<!-- /.col-lg-12 -->
 </div>

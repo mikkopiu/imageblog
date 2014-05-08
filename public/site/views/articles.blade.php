@@ -1,24 +1,31 @@
 @include('site::_partials/header')
 
-<h2>Articles</h2>
+<h2>Posts</h2>
 
 <hr>
 
-<ul class="articles">
-	@foreach ($entries as $entry)
-		<li>
-			<article>
-				@if ($entry->image)
-					<figure><a href="{{ route('article', $entry->slug) }}"><img src="{{ Image::thumb($entry->image, 150) }}" alt=""></a></figure>
-				@endif
+<ul class="categories">
+@foreach ($categories as $category)
+	<li>{{ $category->category }}</li>
+@endforeach
+</ul>
 
-				<h3><a href="{{ route('article', $entry->slug) }}">{{ $entry->title }}</a></h3>
-				<h5>Created at {{ $entry->created_at }} &bull; by {{ $entry->author->email }}</h5>
-				<p>{{ Str::limit($entry->body, 100) }}</p>
-				<p><a href="{{ route('article', $entry->slug) }}" class="more">Read more</a></p>
-			</article>
-		</li>
-	@endforeach
+<ul class="articles">
+@foreach ($entries as $entry)
+	<li>
+		<article>
+			@if ($entry->image)
+				<figure><a href="{{ route('article', $entry->slug) }}"><img src="{{ Image::thumb($entry->image, 150) }}" alt=""></a></figure>
+			@endif
+
+			<h3><a href="{{ route('article', $entry->slug) }}">{{ $entry->title }}</a></h3>
+			<p>Category: {{ $entry->category->category }}</p>
+			<h5>Created at {{ $entry->created_at }} &bull; by {{ $entry->author->first_name }} {{ $entry->author->last_name }}</h5>
+			<p>{{ Str::limit($entry->body, 100) }}</p>
+			<p><a href="{{ route('article', $entry->slug) }}" class="more">Read more</a></p>
+		</article>
+	</li>
+@endforeach
 </ul>
 
 @include('site::_partials/footer')
