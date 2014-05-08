@@ -1,30 +1,41 @@
-@include('site::_partials/header')
+@extends('site::_layouts.default')
 
-<h2>Category: {{ $category->category }}</h2>
-<a href="{{ route('article.list') }}">&laquo; Back to articles</a>	
+@section('main')
 
-@if (count($entries) > 0)
-	<ul class="articles">
-	@foreach ($entries as $entry)
-		<li>
-			<article>
-				@if ($entry->image)
-					<figure><a href="{{ route('article', $entry->slug) }}"><img src="{{ Image::thumb($entry->image, 150) }}" alt=""></a></figure>
-				@endif
+<div class="blog-header">
+	<h1 class="blog-title">{{ $category->category }}</h1>
+	<p class="lead blog-description">Default Photo Blog</p>
+	<a class="bnt btn-default" href="{{ route('article.list') }}">&laquo; Back to articles</a>	
+</div>
 
-				<h3><a href="{{ route('article', $entry->slug) }}">{{ $entry->title }}</a></h3>
-				<h5>Created at {{ $entry->created_at }} &bull; by {{ $entry->author->first_name }} {{ $entry->author->last_name }}</h5>
+<div class="row">
+
+	<div class="col-sm-9 blog-main">
+	@if (count($entries) > 0)
+		@foreach ($entries as $i => $entry)
+			<div class="blog-post col-sm-5 {{ (($i+1) % 2 === 0) ? 'col-sm-offset-2' : null }}">
+				<h2 class="blog-post-title">{{ Str::limit($entry->title, 10) }}</h2>
+				<p class="blog-post-meta small">
+					{{ date('l jS \of F Y h:i:s A', strtotime($entry->created_at)) }} by {{ $entry->author->first_name }} {{ $entry->author->last_name }}
+				</p>
+			@if ($entry->image)
+				<a href="{{ route('article', $entry->slug) }}"><img class="img-responsive img-rounded" src="{{ Image::thumb($entry->image, 300) }}"></a>
+			@endif
 				<p>{{ Str::limit($entry->body, 100) }}</p>
 				<p><a href="{{ route('article', $entry->slug) }}" class="more">Read more</a></p>
-			</article>
-		</li>
-	@endforeach
-	</ul>
-	
-	<a href="{{ route('article.list') }}">&laquo; Back to articles</a>	
-@else
-	<br><br>
-	<p>No posts found for this category.</p>
-@endif
+			</div>
+			<!-- /.blog-post -->
+		@endforeach
+			<div class="col-sm-12">
+				<!-- Pagination -->
+				{{-- $entries->links() --}}
+			</div>
+	@else
+		<p>No posts found for this category.</p>
+	@endif
+	</div>
+	<!-- /.blog-main -->
+</div>
+<!-- /.row -->
 
-@include('site::_partials/footer')
+@stop

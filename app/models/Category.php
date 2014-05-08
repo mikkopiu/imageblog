@@ -8,7 +8,7 @@ class Category extends \Eloquent {
 
 	public function articles()
 	{
-		return $this->hasMany('\App\Models\Article');
+		return $this->hasMany('\App\Models\Article')->orderBy('updated_at', 'desc');
 	}
 
 }
