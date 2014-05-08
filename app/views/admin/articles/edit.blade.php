@@ -56,7 +56,7 @@
 			</div>
 			<div class="form-group">
 				{{ Form::label('body', 'Description') }}
-				{{ Form::textarea('body', null, array('class'=>'form-control','rows'=>'4')) }}
+				{{ Form::textarea('body', null, array('id'=>'editor-area','class'=>'form-control','rows'=>'4')) }}
 			</div>
 			<div class="form-group">
 				{{ Form::label('category', 'Category *') }}
@@ -87,4 +87,16 @@
 	<!-- /.col-lg-4 -->
 </div>
 <!-- /.row -->
+@stop
+@section('scripts')
+
+<script src="{{ URL::asset('ckeditor/ckeditor.js') }}"></script>
+<script>
+	// Replace the <textarea id="editor-area"> with a CKEditor
+	// instance, using default configuration.
+	CKEDITOR.replace( 'editor-area', {
+		toolbar: 'Basic',
+		uiColor: '#DDDDDD'
+	});
+</script>
 @stop

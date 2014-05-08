@@ -11,3 +11,4 @@ composer.lock
 artisan*
 laravel-readme.md
 /public/uploads
+/public/ckeditor

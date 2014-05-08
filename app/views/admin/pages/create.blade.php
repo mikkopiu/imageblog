@@ -23,7 +23,7 @@
 
 			<div class="form-group">
 				{{ Form::label('body', 'Content') }}
-				{{ Form::textarea('body', null, array('class'=>'form-control','rows'=>'10')) }}
+				{{ Form::textarea('body', null, array('id'=>'editor-area','class'=>'form-control','rows'=>'10')) }}
 			</div>
 			<p class="text-muted">* required fields</p>
 			{{ Form::submit('Submit', array('class' => 'btn btn-success')) }}
@@ -48,4 +48,16 @@
 	<!-- /.col-lg-4 -->
 </div>
 <!-- /.row -->
+@stop
+@section('scripts')
+
+<script src="{{ URL::asset('ckeditor/ckeditor.js') }}"></script>
+<script>
+	// Replace the <textarea id="editor-area"> with a CKEditor
+	// instance, using default configuration.
+	CKEDITOR.replace( 'editor-area', {
+		toolbar: 'Basic',
+		uiColor: '#DDDDDD'
+	});
+</script>
 @stop

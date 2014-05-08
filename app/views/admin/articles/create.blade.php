@@ -1,6 +1,8 @@
 @extends('admin._layouts.default')
 
 @section('main')
+@include('admin._partials.category-create-modal')
+
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">Add new post <a href="{{ URL::route('admin.articles.index') }}" class="btn btn-default">Return</a></h1>
@@ -32,4 +34,16 @@
 </div>
 <!-- /.row -->
 	
+@stop
+@section('scripts')
+
+<script src="{{ URL::asset('ckeditor/ckeditor.js') }}"></script>
+<script>
+	// Replace the <textarea id="editor-area"> with a CKEditor
+	// instance, using default configuration.
+	CKEDITOR.replace( 'editor-area', {
+		toolbar: 'Basic',
+		uiColor: '#DDDDDD'
+	});
+</script>
 @stop

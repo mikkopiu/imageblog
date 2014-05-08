@@ -21,19 +21,8 @@ class CategoriesController extends \BaseController {
 	// Renders view for making new categories
 	public function create()
 	{
-		$referer = Request::header('referer');
-		$regex = '#create$#';
-
-		// If category came from category create-page
-		if (preg_match($regex, $referer)) {
-			Notification::success('The category was succesfully created.');
-			// Redirect back to index (avoid staying on page after store)
-			return Redirect::route('admin.categories.index');
-			break;
-		} else {
-			// Else make view as normal
-			return \View::make('admin.categories.create');
-		}
+		// Else make view as normal
+		return \View::make('admin.categories.create');
 	}
 
 	public function store()

@@ -2,6 +2,7 @@
 
 @section('main')
 
+@include('admin._partials.category-create-modal')
 @include('admin._partials.article-modal')
 
 <div class="row">
@@ -163,4 +164,16 @@
 	<!-- /.col-lg-4 -->
 </div>
 <!-- /.row -->
+@stop
+@section('scripts')
+
+<script src="{{ URL::asset('ckeditor/ckeditor.js') }}"></script>
+<script>
+	// Replace the <textarea id="editor-area"> with a CKEditor
+	// instance, using default configuration.
+	CKEDITOR.replace( 'editor-area', {
+		toolbar: 'Basic',
+		uiColor: '#DDDDDD'
+	});
+</script>
 @stop

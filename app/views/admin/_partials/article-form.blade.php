@@ -21,11 +21,13 @@
 	</div>
 	<div class="form-group">
 		{{ Form::label('body', 'Description') }}
-		{{ Form::textarea('body', null, array('class'=>'form-control','rows'=>'3')) }}
+		{{ Form::textarea('body', null, array('id'=>'editor-area','class'=>'form-control','rows'=>'5')) }}
 	</div>
 	<div class="form-group">
 		{{ Form::label('category', 'Category *') }}
 		{{ Form::select('category', $categories, null, array('class' => 'form-control')); }}
+		<br>
+		<a class="btn btn-default" data-toggle="modal" data-target="#categoryModal">Add new category</a>
 	</div>
 	<p class="text-muted">* required fields</p>
 	{{ Form::submit('Submit', ['class' => 'btn btn-success']) }}
