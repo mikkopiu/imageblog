@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Category;
+use App\Models\Article;
 
 // Home page
 Route::get('/', array('as' => 'home', function()
@@ -11,8 +12,12 @@ Route::get('/', array('as' => 'home', function()
 // Article list
 Route::get('blog', array('as' => 'article.list', function()
 {
+	// Fetch all categories for listing
 	$categories = Category::all();
-	$entries = Article::orderBy('created_at', 'desc')->get();
+	// Automatically create pagination (5 per page)
+	$entries = Article::orderBy('created_at', 'desc')->paginate(5);
+
+	// Return view
 	return View::make('site::articles')
 		->with('entries', $entries)
 		->with('categories', $categories);
@@ -21,10 +26,13 @@ Route::get('blog', array('as' => 'article.list', function()
 // Article list (single category)
 Route::get('blog/category/{id}', array('as' => 'category.list', function($id)
 {
+	// Find selected category
 	$category = Category::find($id);
-	$entries = $category->articles;
 
-	if ( ! $category) App::abort(404, 'Category not found');
+	if (!$category) App::abort(404, 'Category not found');
+
+	// Load all articles using articles-method
+	$entries = $category->articles;
 
 	return View::make('site::category')
 		->with('entries', $entries)
