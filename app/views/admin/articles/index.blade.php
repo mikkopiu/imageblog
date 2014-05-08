@@ -14,7 +14,7 @@
 <!-- Data table -->
 <div class="row">
 	<div class="col-lg-12">
-		{{ Notification::showAll() }}
+	{{ Notification::showAll() }}
 	@if (count($articles) > 0)
 		<div class="form-group col-lg-3" style="padding-left:0;">
 			<label class="control-label">Filter by title</label>
@@ -35,7 +35,12 @@
 				</select>
 			</div>
 		</div>
-
+	</div>
+	<!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+	<div class="col-lg-12">
 		<table class="table table-striped table-hover" id="articleTable">
 			<thead>
 				<tr>

@@ -49,6 +49,7 @@ class ArticlesController extends \BaseController {
 		$validation = new ArticleValidator;
 
 		if ($validation->passes()) {
+
 			$article = new Article;
 			$article->title = Input::get('title');
 			$article->slug = Str::slug(Input::get('title'));
