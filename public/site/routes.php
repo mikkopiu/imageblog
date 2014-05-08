@@ -6,10 +6,11 @@ use App\Models\Article;
 // Home page
 Route::get('/', array('as' => 'home', function()
 {
+	// Redirect to Blog
 	return Redirect::to('blog');
 }));
 
-// Article list
+// Blog front-page
 Route::get('blog', array('as' => 'article.list', function()
 {
 	// Fetch all categories for listing
@@ -29,7 +30,9 @@ Route::get('blog/category/{id}', array('as' => 'category.list', function($id)
 	// Find selected category
 	$category = Category::find($id);
 
-	if (!$category) App::abort(404, 'Category not found');
+	if (!$category) {
+		App::abort(404, 'Category not found');
+	}
 
 	// Load all articles using articles-method
 	$entries = $category->articles;
@@ -42,10 +45,15 @@ Route::get('blog/category/{id}', array('as' => 'category.list', function($id)
 // Single article
 Route::get('blog/{slug}', array('as' => 'article', function($slug)
 {
+	// Find selected article
 	$article = Article::where('slug', $slug)->first();
-	$comments = $article->comments;
 
-	if ( ! $article) App::abort(404, 'Article not found');
+	if (!$article) {
+		App::abort(404, 'Article not found');
+	}
+
+	// Load it's comments (empty array, if none), reacted in view
+	$comments = $article->comments;
 
 	return View::make('site::article')
 		->with('entry', $article)
@@ -55,10 +63,14 @@ Route::get('blog/{slug}', array('as' => 'article', function($slug)
 // Single page
 Route::get('{slug}', array('as' => 'page', function($slug)
 {
+	// Find selected page
 	$page = Page::where('slug', $slug)->first();
 
-	if ( ! $page) App::abort(404, 'Page not found');
+	if (!$page) {
+		App::abort(404, 'Page not found');
+	}
 
+	// Return approriate view
 	return View::make('site::page')->with('entry', $page);
 
 }))->where('slug', '^((?!admin).)*$');
