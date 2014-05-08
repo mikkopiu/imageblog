@@ -10,6 +10,7 @@
 						<h3 class="panel-title">Please Sign In</h3>
 					</div>
 					<div class="panel-body">
+						@include('admin._partials.notifications')
 						{{-- Open Form to create Form-elements --}}
 						{{ Form::open() }}
 

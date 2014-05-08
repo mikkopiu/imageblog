@@ -35,7 +35,7 @@ abstract class Validator {
 	 */
 	public function passes()
 	{
-		$validation = \Validator::make($this->data, static::$rules);
+		$validation = \Validator::make($this->data, static::$rules, static::$messages);
 
 		if ($validation->passes()) return true;
 

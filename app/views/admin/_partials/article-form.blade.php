@@ -2,7 +2,7 @@
 {{-- Don't need to define HTTP method, Form functions via POST --}}
 {{ Form::open(array('route'=>'admin.articles.store', 'files'=>true)) }}
 	<div class="form-group">
-		{{ Form::label('title', 'Title') }}
+		{{ Form::label('title', 'Title *') }}
 		{{ Form::text('title', null, array('class'=>'form-control','placeholder'=>'Enter title')) }}
 	</div>
 	<div class="form-group">
@@ -24,9 +24,10 @@
 		{{ Form::textarea('body', null, array('class'=>'form-control','rows'=>'3')) }}
 	</div>
 	<div class="form-group">
-		{{ Form::label('category', 'Category') }}
+		{{ Form::label('category', 'Category *') }}
 		{{ Form::select('category', $categories, null, array('class' => 'form-control')); }}
 	</div>
+	<p class="text-muted">* required fields</p>
 	{{ Form::submit('Submit', ['class' => 'btn btn-success']) }}
 	{{ Form::reset('Reset', ['class' => 'btn btn-default']) }}
 {{ Form::close() }}

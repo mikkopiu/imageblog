@@ -17,10 +17,10 @@
 		{{ Form::open(array('route'=>'admin.categories.store')) }}
 
 			<div class="form-group">
-				{{ Form::label('category', 'Name') }}
+				{{ Form::label('category', 'Name *') }}
 				{{ Form::text('category', null, array('class'=>'form-control','placeholder'=>'Enter a name for the category')) }}
 			</div>
-
+			<p class="text-muted">* required fields</p> 
 			{{ Form::submit('Submit', array('class' => 'btn btn-success')) }}
 			<a href="{{ URL::route('admin.categories.index') }}" class="btn btn-danger">Cancel</a>
 

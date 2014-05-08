@@ -1,41 +1,7 @@
 @extends('admin._layouts.default')
 
 @section('main')
-<!-- Category creation modal -->
-<div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="categoryModalLabel">Add new category</h4>
-			</div>
-			<!-- /.modal-header -->
-			<div class="modal-body">
-				@include('admin._partials.notifications')
-
-				{{-- Open Form to prepare for saving new page --}}
-				{{-- Don't need to define HTTP method, Form functions via POST --}}
-				{{ Form::open(array('route'=>'admin.categories.store')) }}
-
-					<div class="form-group">
-						{{ Form::label('category', 'Name') }}
-						{{ Form::text('category', null, array('class'=>'form-control','placeholder'=>'Enter a name for the category')) }}
-					</div>
-			</div>
-			<!-- /.modal-body -->
-			<div class="modal-footer">					
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					{{ Form::submit('Submit', array('class' => 'btn btn-success')) }}
-
-				{{ Form::close() }}
-			</div>
-			<!-- /.modal-footer -->
-		</div>
-		<!-- /.modal-content -->
-	</div>
-	<!-- /.modal-dialog -->
-</div>
-<!-- /.modal -->
+@include('admin._partials.category-create-modal')
 
 <div class="row">
 	<div class="col-lg-12">
@@ -60,7 +26,7 @@
 		{{ Form::model($article, array('method' => 'put', 'route' => array('admin.articles.update', $article->id), 'files' => true)) }}
 
 			<div class="form-group">
-				{{ Form::label('title', 'Title') }}
+				{{ Form::label('title', 'Title *') }}
 				{{ Form::text('title', null, array('class'=>'form-control','placeholder'=>'Enter title')) }}
 			</div>
 			<div class="form-group">
@@ -93,11 +59,12 @@
 				{{ Form::textarea('body', null, array('class'=>'form-control','rows'=>'4')) }}
 			</div>
 			<div class="form-group">
-				{{ Form::label('category', 'Category') }}
+				{{ Form::label('category', 'Category *') }}
 				{{ Form::select('category', $categories, $article->category, array('class' => 'form-control')); }}
 				<br>
 				<a class="btn btn-default" data-toggle="modal" data-target="#categoryModal">Add new category</a>
 			</div>
+			<p class="text-muted">* required fields</p>
 			{{ Form::submit('Save', array('class' => 'btn btn-success')) }}
 			<a href="{{ URL::previous() }}" class="btn btn-danger"><i class="fa fa-times fa-fw"></i>Cancel</a>
 

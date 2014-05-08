@@ -9,13 +9,26 @@
 </div>
 <!-- /.row -->
 <div class="row">
-	<div class="col-lg-12">
+	<div class="col-lg-8">
 		@include('admin._partials.notifications')
 
 		@include('admin._partials.article-form')
 
 	</div>
 	<!-- /.col-lg-12 -->
+	<div class="col-lg-4">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				Info Panel
+			</div>
+			<div class="panel-body">
+				<p>Select a suitable title for your post and select an image.</p>
+				<hr>
+				<p>After that you can choose a category and write a short description.</p>
+			</div>
+		</div>
+	</div>
+	<!-- /.col-lg-4 -->
 </div>
 <!-- /.row -->
 	

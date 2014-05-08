@@ -33,6 +33,7 @@ class AuthController extends BaseController {
 
 			if ($user)
 			{
+				Notification::success('Logged in succesfully.');
 				// If succesfull, redirect to admin-pages
 				return Redirect::route('admin.dashboard');
 			}
@@ -90,6 +91,7 @@ class AuthController extends BaseController {
 		// Sentry's built-in logout function
 		Sentry::logout();
 
+		Notification::info('Logged out.');
 		// Redirect user to login
 		return Redirect::route('admin.login');
 	}

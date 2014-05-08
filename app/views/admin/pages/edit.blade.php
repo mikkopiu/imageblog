@@ -23,7 +23,7 @@
 		{{ Form::model($page, array('method' => 'put', 'route' => array('admin.pages.update', $page->id))) }}
 
 			<div class="form-group">
-				{{ Form::label('title', 'Title') }}
+				{{ Form::label('title', 'Title *') }}
 				{{ Form::text('title', null, array('class'=>'form-control','placeholder'=>'Enter title')) }}
 			</div>
 
@@ -31,7 +31,7 @@
 				{{ Form::label('body', 'Content') }}
 				{{ Form::textarea('body', null, array('class'=>'form-control','rows'=>'10')) }}
 			</div>
-
+			<p class="text-muted">* required fields</p>
 			{{ Form::submit('Save', array('class' => 'btn btn-success')) }}
 			<a href="{{ URL::previous() }}" class="btn btn-danger"><i class="fa fa-times fa-fw"></i>Cancel</a>
 
