@@ -37,10 +37,12 @@
 	<!-- /.blog-main -->
 </div>
 <!-- /.row -->
+@if (count($entries) > 0)
 <div class="row">
 	<div class="col-sm-12">
 		<a class="btn btn-default" href="{{ route('article.list') }}">&laquo; Back to articles</a>
 	</div>
 </div>
+@endif
 
 @stop
