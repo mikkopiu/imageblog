@@ -36,7 +36,11 @@
 			<h4>Categories</h4>
 			<ol class="list-unstyled">
 			@foreach ($categories as $category)
-				<li><a href="{{ route('category.list', $category->id) }}">{{ $category->category }} ({{ count($category->articles) }} posts)</a></li>
+				@if (count($category->articles) > 0)
+				<li>
+					<a href="{{ route('category.list', $category->id) }}">{{ $category->category }} ({{ count($category->articles) }} posts)</a>
+				</li>
+				@endif
 			@endforeach
 			</ol>
 		</div>
