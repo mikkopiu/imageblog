@@ -59,7 +59,7 @@
 						<td>{{ $article->updated_at }}</td>
 						<td>
 							@if (count($article->comments) > 0)
-								<a class="btn btn-info" href="{{ URL::route('admin.articles.show', $article->id) }}">({{ count($article->comments) }}) comments</a>
+								<a class="btn btn-info btn-sm" href="{{ URL::route('admin.articles.show', $article->id) }}">({{ count($article->comments) }}) comments</a>
 							@else
 								<button type="button" class="btn btn-info btn-sm" disabled="disabled">(0) comments</button>
 							@endif

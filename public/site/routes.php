@@ -18,6 +18,19 @@ Route::get('blog', array('as' => 'article.list', function()
 		->with('categories', $categories);
 }));
 
+// Article list (single category)
+Route::get('blog/category/{id}', array('as' => 'category.list', function($id)
+{
+	$category = Category::find($id);
+	$entries = $category->articles;
+
+	if ( ! $category) App::abort(404, 'Category not found');
+
+	return View::make('site::category')
+		->with('entries', $entries)
+		->with('category', $category);
+}));
+
 // Single article
 Route::get('blog/{slug}', array('as' => 'article', function($slug)
 {
