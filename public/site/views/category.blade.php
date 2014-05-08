@@ -5,15 +5,15 @@
 <div class="blog-header">
 	<h1 class="blog-title">{{ $category->category }}</h1>
 	<p class="lead blog-description">Default Photo Blog</p>
-	<a class="bnt btn-default" href="{{ route('article.list') }}">&laquo; Back to articles</a>	
+	<a class="btn btn-default" href="{{ route('article.list') }}">&laquo; Back to articles</a>
 </div>
 
 <div class="row">
 
-	<div class="col-sm-9 blog-main">
+	<div class="col-sm-12 blog-main">
 	@if (count($entries) > 0)
 		@foreach ($entries as $i => $entry)
-			<div class="blog-post col-sm-5 {{ (($i+1) % 2 === 0) ? 'col-sm-offset-2' : null }}">
+			<div class="blog-post col-sm-4">
 				<h2 class="blog-post-title">{{ Str::limit($entry->title, 10) }}</h2>
 				<p class="blog-post-meta small">
 					{{ date('l jS \of F Y h:i:s A', strtotime($entry->created_at)) }} by {{ $entry->author->first_name }} {{ $entry->author->last_name }}
@@ -37,5 +37,10 @@
 	<!-- /.blog-main -->
 </div>
 <!-- /.row -->
+<div class="row">
+	<div class="col-sm-12">
+		<a class="btn btn-default" href="{{ route('article.list') }}">&laquo; Back to articles</a>
+	</div>
+</div>
 
 @stop
