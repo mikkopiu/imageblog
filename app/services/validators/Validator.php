@@ -2,28 +2,46 @@
 
 abstract class Validator {
 
-	// Will contain input data to be validated
+	/**
+	 * Container for the data that needs to be validated
+	 * @var array
+	 */
 	protected $data;
 
-	// Stores errors
+	/**
+	 * Validation errors
+	 * @var array
+	 */
 	public $errors;
 
-	// Stores given rules (defined in extended classes)
+	/**
+	 * Validation rules
+	 * @var array
+	 */
 	public static $rules;
 
+	/**
+	 * Initialize validator
+	 * @param array $data
+	 */
 	public function __construct($data = null)
 	{
 		$this->data = $data ?: \Input::all();
 	}
 
+	/**
+	 * Check if validation passes
+	 * @return bool
+	 */
 	public function passes()
 	{
 		$validation = \Validator::make($this->data, static::$rules);
 
 		if ($validation->passes()) return true;
 
-		$this->erros = $validation->messages();
+		$this->errors = $validation->messages();
 
 		return false;
 	}
+
 }

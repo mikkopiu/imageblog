@@ -1,6 +1,42 @@
 @extends('admin._layouts.default')
 
 @section('main')
+<!-- Category creation modal -->
+<div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="categoryModalLabel">Add new category</h4>
+			</div>
+			<!-- /.modal-header -->
+			<div class="modal-body">
+				@include('admin._partials.notifications')
+
+				{{-- Open Form to prepare for saving new page --}}
+				{{-- Don't need to define HTTP method, Form functions via POST --}}
+				{{ Form::open(array('route'=>'admin.categories.store')) }}
+
+					<div class="form-group">
+						{{ Form::label('category', 'Name') }}
+						{{ Form::text('category', null, array('class'=>'form-control','placeholder'=>'Enter a name for the category')) }}
+					</div>
+			</div>
+			<!-- /.modal-body -->
+			<div class="modal-footer">					
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					{{ Form::submit('Submit', array('class' => 'btn btn-success')) }}
+
+				{{ Form::close() }}
+			</div>
+			<!-- /.modal-footer -->
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">
@@ -29,21 +65,28 @@
 			</div>
 			<div class="form-group">
 				{{ Form::label('image', 'Image') }}<br>
+
 				{{-- fileinput from Jasny's Bootstrap --}}
+			@if ($article->image)
+				<div class="fileinput fileinput-exists" data-provides="fileinput">
+			@else
 				<div class="fileinput fileinput-new" data-provides="fileinput">
+			@endif
 					<div class="fileinput-new thumbnail" style="width: 200px;">
+						<img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image">
+					</div>
+					<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px;">
 						@if ($article->image)
 							<a href="<?php echo $article->image; ?>"><img class="img-responsive" src="<?php echo Image::resize($article->image, 200, 150); ?>" alt="Post image"></a>
-						@else
-							<img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image">
 						@endif
 					</div>
-					<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px;"></div>
 					<div>
 						<span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span>{{ Form::file('image') }}</span>
 						<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
 					</div>
 				</div>
+				<!-- /.fileinput -->
+
 			</div>
 			<div class="form-group">
 				{{ Form::label('body', 'Description') }}
@@ -53,7 +96,7 @@
 				{{ Form::label('category', 'Category') }}
 				{{ Form::select('category', $categories, $article->category, array('class' => 'form-control')); }}
 				<br>
-				<button type="button" class="btn btn-default">Add new category</button>
+				<a class="btn btn-default" data-toggle="modal" data-target="#categoryModal">Add new category</a>
 			</div>
 			{{ Form::submit('Save', array('class' => 'btn btn-success')) }}
 			<a href="{{ URL::previous() }}" class="btn btn-danger"><i class="fa fa-times fa-fw"></i>Cancel</a>

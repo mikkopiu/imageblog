@@ -2,7 +2,7 @@
 
 use App\Models\Category;
 use App\Services\Validators\CategoryValidator;
-use Input, Notification, Redirect, Sentry, Str;
+use Input, Notification, Redirect, Request, Sentry, Str;
 
 /** PagesController uses Laravel's resourceful controller -functionality
  *  See manual for info
@@ -21,7 +21,19 @@ class CategoriesController extends \BaseController {
 	// Renders view for making new categories
 	public function create()
 	{
-		return \View::make('admin.categories.create');
+		$referer = Request::header('referer');
+		$regex = '#create$#';
+
+		// If category came from category create-page
+		if (preg_match($regex, $referer)) {
+			Notification::success('The category was succesfully created.');
+			// Redirect back to index (avoid staying on page after store)
+			return Redirect::route('admin.categories.index');
+			break;
+		} else {
+			// Else make view as normal
+			return \View::make('admin.categories.create');
+		}
 	}
 
 	public function store()
@@ -38,7 +50,7 @@ class CategoriesController extends \BaseController {
 			// Create new notification
 			Notification::success('The category was succesfully created.');
 
-			return Redirect::route('admin.categories.index');
+			return Redirect::back()->withInput();
 		}
 
 		return Redirect::back()->withInput()->withErrors($validation->errors);

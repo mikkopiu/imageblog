@@ -10,6 +10,7 @@ class ArticlesController extends \BaseController {
 
 	public function index()
 	{
+		// List only category-names
 		$categories = Category::lists('category');
 
 		return \View::make('admin.articles.index')
@@ -20,12 +21,15 @@ class ArticlesController extends \BaseController {
 	public function show($id)
 	{
 		if (Article::find($id)) {
+			// Find all comments for this article
 			$comments = Article::find($id)->comments;
 
+			// Pass data to view
 			return \View::make('admin.articles.show')
 				->with('article', Article::find($id))
 				->with('comments', $comments);
 		} else {
+			// In case article isn't found, display warning
 			Notification::warning('No such article found.');
 
 			return Redirect::route('admin.articles.index');
@@ -90,7 +94,11 @@ class ArticlesController extends \BaseController {
 			$article->user_id = Sentry::getUser()->id;
 
 			if (Input::hasFile('image')) {
+				// If image is present, upload it and save link to image-column
 				$article->image = Image::upload(Input::file('image'), 'articles/' . $article->id);
+			} else {
+				// If the image was removed, remove link from DB too
+				$article->image = null;
 			}
 
 			$article->save();

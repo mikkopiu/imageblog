@@ -33,12 +33,16 @@
 						<td>{{ count($category->articles) }}</td>
 						<td>
 							<a class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal{{$i}}">Edit</a>
+							<!-- Commented until delete logic decided
+
 							{{-- Delete needs to be inside form, as it is POST --}}
 							{{ Form::open(array('route' => array('admin.categories.destroy', $category->id), 'method' => 'delete', 'style'=>'display:inline;')) }}
 
 								<button class="btn btn-danger btn-sm" type="submit" href="{{ URL::route('admin.categories.destroy', $category->id) }}" onclick="if(!confirm('Are you sure you want to delete this category?')){return false;};"><i class="fa fa-times-circle fa-fw"></i>Delete</button>
 								
 							{{ Form::close() }}
+
+							-->
 						</td>
 					</tr>
 				@endforeach
@@ -49,7 +53,7 @@
 			<h5 class="text-center">
 				No categories yet, create one!
 				<hr>
-				<a href="{{ URL::route('admin.pages.create') }}" class="btn btn-success"><i class="fa fa-plus-square-o fa-fw"></i> Create a new category</a>
+				<a href="{{ URL::route('admin.categories.create') }}" class="btn btn-success"><i class="fa fa-plus-square-o fa-fw"></i> Create a new category</a>
 			</h5>
 		</div>
 	@endif

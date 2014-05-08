@@ -15,11 +15,14 @@
 						{{ Form::label('category', 'Name') }}
 						{{ Form::text('category', null, array('class'=>'form-control','placeholder'=>'Enter name for category')) }}
 					</div>
-
+			</div>
+			<!-- /.modal-body -->
+			<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					{{ Form::submit('Save', array('class' => 'btn btn-success')) }}
 				{{ Form::close() }}
 			</div>
-			<!-- /.modal-body -->
+			<!-- /.modal-footer -->
 		</div>
 		<!-- /.modal-content -->
 	</div>

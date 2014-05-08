@@ -16,7 +16,7 @@
 	<div class="col-lg-12">
 		{{ Notification::showAll() }}
 	@if (count($articles) > 0)
-		<div class="form-group col-lg-4" style="padding-left:0;">
+		<div class="form-group col-lg-3" style="padding-left:0;">
 			<label class="control-label">Filter by title</label>
 			<div class="input-group">
 				<span class="input-group-addon"><span id="searchIcon" class="glyphicon glyphicon-search"></span></span>
@@ -39,7 +39,7 @@
 		<table class="table table-striped table-hover" id="articleTable">
 			<thead>
 				<tr>
-					<th class="col-md-4">Title</th>
+					<th class="col-md-3">Title</th>
 					<th class="col-md-2">Category</th>
 					<th>Posted</th>
 					<th>Updated</th>					
@@ -65,6 +65,7 @@
 							@endif
 						</td>
 						<td>
+							<a class="btn btn-primary btn-sm" href="{{ URL::route('article', $article->slug) }}">View</a>
 							<a class="btn btn-success btn-sm" href="{{ URL::route('admin.articles.edit', $article->id) }}">Edit</a>
 							{{-- Delete needs to be inside form, as it is POST --}}
 							{{ Form::open(array('route' => array('admin.articles.destroy', $article->id), 'method' => 'delete', 'style'=>'display:inline;')) }}

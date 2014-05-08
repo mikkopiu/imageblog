@@ -11,9 +11,11 @@
 			<div class="modal-body">
 				@if ($article->image)
 					<img class="img-responsive" src="{{ Image::resize($article->image, 858, 643.5) }}" alt="">
-					<hr>
 				@endif
-				{{ $article->body }}
+				@if ($article->body)
+					<hr>
+					{{ $article->body }}
+				@endif
 			</div>
 			<!-- /.modal-body -->
 			<div class="modal-footer">
