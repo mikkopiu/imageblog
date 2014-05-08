@@ -8,7 +8,9 @@
 			</div>
 			<!-- /.modal-header -->
 			<div class="modal-body">
-				@include('admin._partials.notifications')
+				{{ Notification::showError() }}
+				{{ Notification::showInfo() }}
+				{{ Notification::showWarning() }}
 
 				{{-- Open Form to prepare for saving new page --}}
 				{{-- Don't need to define HTTP method, Form functions via POST --}}
