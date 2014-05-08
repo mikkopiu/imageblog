@@ -231,17 +231,6 @@
 	<div class="navbar-default navbar-static-side" role="navigation">
 		<div class="sidebar-collapse">
 			<ul class="nav" id="side-menu">
-				<!-- Sidebar search
-				<li class="sidebar-search">
-					<div class="input-group custom-search-form">
-						<input type="text" class="form-control" placeholder="Search...">
-						<span class="input-group-btn">
-						<button class="btn btn-default" type="button">
-							<i class="fa fa-search"></i>
-						</button>
-					</span>
-					</div>
-				-->
 				</li>
 				<li class="{{ Request::is('admin/dashboard') ? 'active' : null }}">
 					<a href="{{ URL::route('admin.dashboard') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
@@ -249,14 +238,12 @@
 				<li class="{{ Request::is('admin/articles*') ? 'active' : null }}">
 					<a href="{{ URL::route('admin.articles.index') }}"><i class="fa fa-edit fa-fw"></i> Posts</a>
 				</li>
-				<!--
-				<li>
-					<a href="forms.html"><i class="fa fa-inbox fa-fw"></i> Categories</a>
+				<li class="{{ Request::is('admin/categories*') ? 'active' : null }}">
+					<a href="{{ URL::route('admin.categories.index') }}"><i class="fa fa-inbox fa-fw"></i> Categories</a>
 				</li>
 				<li>
 					<a href="tables.html"><i class="fa fa-comments-o fa-fw"></i> Comments</a>
 				</li>
-				-->
 				<li class="{{ Request::is('admin/pages*') ? 'active' : null }}">
 					<a href="{{ URL::route('admin.pages.index') }}"><i class="fa fa-files-o fa-fw"></i> Pages</a>
 				</li>

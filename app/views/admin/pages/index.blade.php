@@ -26,7 +26,7 @@
 				{{-- Create table data for all pages --}}
 				@foreach ($pages as $page)
 					<tr>
-						<td>{{ $page->id }}</td>
+						<td class="text-muted">{{ $page->id }}</td>
 						{{-- Creates URL to the specific page --}}
 						<td><a href="{{ URL::route('admin.pages.show', $page->id) }}">{{ $page->title }}</a></td>
 						<td>{{ $page->created_at }}</td>
