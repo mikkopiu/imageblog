@@ -23,11 +23,12 @@
 
 	@if (count($comments) > 0)
 		<div>
-			<h4>Comments</h4>
+			<h2>Comments</h2>
 		@foreach ($comments as $comment)
 			<div class="well">
+				<span class="small text-muted">{{ date('l jS \of F Y h:i:s A', strtotime($comment->updated_at)) }}</span>
 				<p>{{ $comment->body }}</p>
-				<span class="small text-muted">- {{ $comment->commenter }}</span>
+				<span class="text-muted">- {{ $comment->commenter }}</span>
 			</div>
 		@endforeach
 		</div>

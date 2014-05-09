@@ -20,7 +20,7 @@ class Article extends \Eloquent {
 
 	public function comments()
 	{
-		return $this->hasMany('\App\Models\Comment');
+		return $this->hasMany('\App\Models\Comment')->orderBy('updated_at', 'desc');
 	}
 
 }
