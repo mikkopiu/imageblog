@@ -12,3 +12,4 @@ artisan*
 laravel-readme.md
 /public/uploads
 /public/ckeditor
+/app/database/seeds

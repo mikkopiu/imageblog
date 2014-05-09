@@ -4,6 +4,7 @@
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">{{ $article->title}} - Comments <a href="{{ URL::route('admin.articles.index') }}" class="btn btn-default">Return</a></h1>
+		@include('admin._partials.notifications')
 	</div>
 	<!-- /.col-lg-12 -->
 </div>
@@ -29,8 +30,11 @@
 						<td>
 							{{-- Delete needs to be inside form, as it is POST --}}
 							{{ Form::open(array('route' => array('comments.destroy', $comment->id), 'method' => 'delete', 'style'=>'display:inline;')) }}
-
-								<button class="btn btn-danger btn-mini" type="submit" href="{{ URL::route('comments.destroy', $comment->id) }}" onclick="if(!confirm('Are you sure you want to delete this comment?')){return false;};"><i class="fa fa-times-circle fa-fw"></i>Delete</button>
+								@if (Sentry::getUser()->hasAnyAccess(['admin.comments.destroy']))
+									<button class="btn btn-danger btn-mini" type="submit" href="{{ URL::route('comments.destroy', $comment->id) }}" onclick="if(!confirm('Are you sure you want to delete this comment?')){return false;};"><i class="fa fa-times-circle fa-fw"></i>Delete</button>
+								@else
+									<button class="btn btn-default" type="button" disabled>Only admins can delete comments</button>
+								@endif
 								
 							{{ Form::close() }}
 						</td>

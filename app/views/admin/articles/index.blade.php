@@ -6,7 +6,11 @@
 
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="page-header">Posts <a href="{{ URL::route('admin.articles.create') }}" class="btn btn-success"><i class="fa fa-plus-square-o fa-fw"></i> Add new post</a></h1>
+		<h1 class="page-header">Posts 
+		@if (Sentry::getUser()->getGroups()[0]->name !== 'Admin')
+			by you
+		@endif
+		<a href="{{ URL::route('admin.articles.create') }}" class="btn btn-success"><i class="fa fa-plus-square-o fa-fw"></i> Add new post</a></h1>
 	</div>
 	<!-- /.col-lg-12 -->
 </div>
@@ -50,6 +54,9 @@
 					<th>Updated</th>					
 					<th>Comments</th>
 					<th><i class="fa fa-cog fa-fw"></i></th>
+				@if (Sentry::getUser()->getGroups()[0]->name === 'Admin')
+					<th>User</th>
+				@endif
 				</tr>
 			</thead>
 			<tbody>
@@ -85,6 +92,9 @@
 								
 							{{ Form::close() }}
 						</td>
+					@if (Sentry::getUser()->getGroups()[0]->name === 'Admin')
+						<td>{{ $article->author->first_name }} {{ $article->author->last_name }}</td>
+					@endif
 					</tr>
 				@endforeach
 			</tbody>

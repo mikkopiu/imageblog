@@ -14,7 +14,7 @@ class CommentsController extends \BaseController {
 
 		if ($validation->passes()) {
 			$req = Request::header('referer');
-			$regex1 = '#(?<=blog/).*#';
+			$regex1 = '#(?<=/blog/).*#';
 
 			if(preg_match($regex1, $req, $matches)) {
 				$req = $matches[0];
@@ -41,11 +41,18 @@ class CommentsController extends \BaseController {
 	{
 		$comment = Comment::find($id);
 		$articleID = $comment->article_id;
-		$comment->delete();
 
-		Notification::success('The comment was deleted.');
+		if ( Sentry::getUser()->hasAnyAccess(['admin.comments.destroy']) ) {
+			$comment->delete();
 
-		return Redirect::route('admin.articles.show', $articleID);
+			Notification::success('The comment was deleted.');
+
+			return Redirect::route('admin.articles.show', $articleID);
+		} else {
+			Notification::warning('Only administrators can delete comments.');
+
+			return Redirect::route('admin.articles.show', $articleID);
+		}
 	}
 
 }

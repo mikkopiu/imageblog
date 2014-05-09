@@ -13,9 +13,27 @@ class ArticlesController extends \BaseController {
 		// List only category-names
 		$categories = Category::lists('category');
 
-		return \View::make('admin.articles.index')
-			->with('articles', Article::all())
-			->with('categories', $categories);
+		$userGroup = Sentry::getUser()->getGroups()[0];
+
+		if ($userGroup->name === 'Admin') {
+			// Return view with all articles and category list
+			return \View::make('admin.articles.index')
+				->with('articles', Article::all())
+				->with('categories', $categories);
+		} elseif ($userGroup->name === 'User') {
+			$userID = Sentry::getUser()->id;
+			// Return view with only articles by user and category list
+			return \View::make('admin.articles.index')
+				->with('articles', Article::where('user_id','=',$userID)->get())
+				->with('categories', $categories);
+		} else {
+			// In case of error
+			Notification::warning('User not found.');
+			// Return view with all articles and category list
+			return \View::make('admin.articles.index')
+				->with('articles', array())
+				->with('categories', array());
+		}
 	}
 
 	public function show($id)
