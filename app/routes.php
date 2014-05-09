@@ -31,6 +31,9 @@ Route::group(['prefix' => 'admin', 'before' => 'auth.admin'], function()
 			->with('user', $user);
 	}));
 */
+	Route::get('user', array('as'=>'admin.user','uses' => 'App\Controllers\Admin\UsersController@showUser'));
+	Route::put('user', array('as'=>'admin.user.update','uses' => 'App\Controllers\Admin\UsersController@update'));
+
 	Route::resource('articles', 'App\Controllers\Admin\ArticlesController');
 	Route::resource('pages', 'App\Controllers\Admin\PagesController');
 	Route::resource('categories', 'App\Controllers\Admin\CategoriesController');
