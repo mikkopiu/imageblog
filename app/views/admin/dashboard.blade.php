@@ -35,38 +35,21 @@
 	<!-- /.col-lg-8 -->
 	
 	<div class="col-lg-4">
-		<!-- Notifications panel 
+		<!-- Notifications panel -->
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<i class="fa fa-bell fa-fw"></i> Notifications Panel
 			</div>
 			<div class="panel-body">
 				<div class="list-group">
-					<a href="#" class="list-group-item">
-						<i class="fa fa-comment fa-fw"></i> New Comment
-						<span class="pull-right text-muted small"><em>4 minutes ago</em>
+					<div class="list-group-item">
+						<i class="fa fa-comment fa-fw"></i> {{ count($newComments) }} New Comments
+						<span class="pull-right text-muted small"><em>within 24h</em>
 						</span>
-					</a>
-					<a href="#" class="list-group-item">
-						<i class="fa fa-twitter fa-fw"></i> 3 New Followers
-						<span class="pull-right text-muted small"><em>12 minutes ago</em>
-						</span>
-					</a>
-					<a href="#" class="list-group-item">
-						<i class="fa fa-envelope fa-fw"></i> Message Sent
-						<span class="pull-right text-muted small"><em>27 minutes ago</em>
-						</span>
-					</a>
-					<a href="#" class="list-group-item">
-						<i class="fa fa-tasks fa-fw"></i> New Task
-						<span class="pull-right text-muted small"><em>43 minutes ago</em>
-						</span>
-					</a>
+					</div>
 				</div>
-				<a href="#" class="btn btn-default btn-block">View All Alerts</a>
 			</div>
 		</div>
-		 -->
 		<!-- Newest posts panel -->
 		<div class="panel panel-default">
 			<div class="panel-heading">
