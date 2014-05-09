@@ -9,7 +9,7 @@
 </div>
 <!-- /.row -->
 <div class="row">
-	<div class="col-lg-12">
+	<div class="col-lg-8">
 		@include('admin._partials.notifications')
 
 		{{-- Open Form to prepare for saving new page --}}
@@ -27,7 +27,20 @@
 		{{ Form::close() }}
 
 	</div>
-	<!-- /.col-lg-12 -->
+	<!-- /.col-lg-8 -->
+	<div class="col-lg-4">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				Info Panel
+			</div>
+			<div class="panel-body">
+				<p>Select a name for your new category.</p>
+				<hr>
+				<p>The name may only contain letters, numbers, spaces, dashes and underscores.</p>
+			</div>
+		</div>
+	</div>
+	<!-- /.col-lg-4 -->
 </div>
 <!-- /.row -->
 @stop
