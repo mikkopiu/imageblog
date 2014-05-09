@@ -54,10 +54,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
-			'database'  => 'imageblog-cms',
-			'username'  => 'root',
-			'password'  => '',
+			'host'      => 'localhost', 	// Change to match your own
+			'database'  => 'imageblog-cms',	// Change to match your own
+			'username'  => 'root',			// Change to match your own
+			'password'  => '',				// Change to match your own
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
