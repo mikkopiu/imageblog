@@ -2,6 +2,7 @@
 
 use App\Models\Category;
 use App\Models\Article;
+use App\Models\Page;
 
 // Home page
 Route::get('/', array('as' => 'home', function()
@@ -21,7 +22,8 @@ Route::get('blog', array('as' => 'article.list', function()
 	// Return view
 	return View::make('site::articles')
 		->with('entries', $entries)
-		->with('categories', $categories);
+		->with('categories', $categories)
+		->with('pages', Page::all());
 }));
 
 // Article list (single category)
@@ -39,7 +41,8 @@ Route::get('blog/category/{id}', array('as' => 'category.list', function($id)
 
 	return View::make('site::category')
 		->with('entries', $entries)
-		->with('category', $category);
+		->with('category', $category)
+		->with('pages', Page::all());
 }));
 
 // Single article
@@ -57,7 +60,8 @@ Route::get('blog/{slug}', array('as' => 'article', function($slug)
 
 	return View::make('site::article')
 		->with('entry', $article)
-		->with('comments', $comments);
+		->with('comments', $comments)
+		->with('pages', Page::all());
 }));
 
 // Single page
@@ -71,14 +75,17 @@ Route::get('{slug}', array('as' => 'page', function($slug)
 	}
 
 	// Return approriate view
-	return View::make('site::page')->with('entry', $page);
+	return View::make('site::page')
+		->with('entry', $page)
+		->with('pages', Page::all());
 
 }))->where('slug', '^((?!admin).)*$');
 
 // 404 Page
 App::missing(function($exception)
 {
-	return Response::view('site::404', array(), 404);
+	return Response::view('site::404', array(), 404)
+		->with('pages', Page::all());
 });
 
 Route::resource('comments', 'App\Controllers\CommentsController');
