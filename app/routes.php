@@ -16,6 +16,21 @@ Route::group(['prefix' => 'admin', 'before' => 'auth.admin'], function()
 {
 	Route::any('/', 'App\Controllers\Admin\DashboardController@index');
 	Route::get('dashboard',['as'=>'admin.dashboard', 'uses'=>'App\Controllers\Admin\DashboardController@index']);
+/*
+	Route::get('admin/settings', array('as' => 'admin.settings', function(){
+		$user = Sentry::getUser();
+
+		return View::make('admin.settings')
+			->with('user', $user);
+	}));
+	Route::get('admin/settings', array('as' => 'admin.settings.updateInfo', function(){
+		Notification::success('Information changed succesfully.');
+		$user = Sentry::getUser();
+
+		return View::make('admin.settings')
+			->with('user', $user);
+	}));
+*/
 	Route::resource('articles', 'App\Controllers\Admin\ArticlesController');
 	Route::resource('pages', 'App\Controllers\Admin\PagesController');
 	Route::resource('categories', 'App\Controllers\Admin\CategoriesController');
